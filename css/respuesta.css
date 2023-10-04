@@ -1,0 +1,123 @@
+/* Estilos generales */
+body {
+    background-color: #FFAF9D;
+    margin: 10px;
+    padding: 0;
+}
+
+header nav {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 100px;
+}
+
+header nav img {
+    width: 380px;
+    height: 70px;
+}
+
+aside {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    height: 30vh; /* Utiliza el 100% de la altura de la pantalla */
+}
+
+aside .container {
+    width: 100%;
+    min-height: 30px;
+    min-width: 30px;
+    color: white;
+}
+
+aside .item {
+    border: 1px solid black;
+    color: white;
+    padding-right: 20px;
+    padding-left: 20px;
+    background: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+aside .item img{
+    padding: 10px;}
+
+
+/* Estilos para el contenedor grid */
+.grid {
+    background: rgba(255, 211, 160, 1);
+    backdrop-filter: blur(5px);
+    border-radius: 10%;
+    border: 1px solid black;
+    text-align: center;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: [x0] 0fr [x1] 0.5fr [x2] 0.5fr [x3] 0.5fr [x4];
+    grid-template-rows: [y0] 0fr [y1] 0fr [y2] 0.2fr [y3] 0fr [y4];
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Estilos para elementos dentro del contenedor */
+.item_pregunta {
+    font-size: 24px;
+    color: white;
+    grid-column: x0 / x4;
+    grid-row: y0 / y1;
+    text-decoration: underline;
+    text-wrap: auto;
+}
+
+.item_imagen {
+    grid-column: x0 / x4;
+    grid-row: y1 / y2;
+    display: flex;
+    flex-direction: column; /* Muestra los elementos en una columna */
+    align-items: center; /* Centra horizontalmente los elementos en el contenedor */
+    justify-content: center; /* Centra verticalmente los elementos en el contenedor */
+}
+
+.item_imagen img {
+    width: 320px;
+    height: 280px;
+    margin-bottom: 10px; /* Ajusta el espacio entre la imagen y otros elementos */
+}
+
+.item_respuesta {
+    font-size: 20px;
+    color: white;
+    text-align: left;
+    background-color: red;
+    grid-column: x0 / x4;
+    grid-row: y2 / y3;
+    margin: 40px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding: 20px;
+    padding-top: 0px;
+}
+
+.item_respuesta h2 {
+    text-align: center;
+}
+
+.item_respuesta_suya {
+    font-size: 20px;
+    color: white;
+    text-align: left;
+    background-color: #FFAF9D;
+    grid-column: x0 / x4;
+    grid-row: y3 / y4;
+    margin: 40px;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+.item_respuesta_suya h2 {
+    text-align: center;
+}
