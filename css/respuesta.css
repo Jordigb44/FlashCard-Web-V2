@@ -31,11 +31,11 @@ header nav img {
     gap: 10px;
 }
 
-.item_nueva{
+.item_hogar{
     grid-column-start: x1;
     grid-column-end: x2;
 }
-.item_nueva a button {
+.item_hogar a button {
     height: fit-content;
     display: flex;
     align-items: center;
@@ -47,14 +47,13 @@ header nav img {
     grid-auto-flow: row;
 }
 
-.item_nueva a button img {
-    padding-left: 10px;
-    padding-right: 10px;
+.item_hogar a button img {
+    padding: 10px;
     color: #ffffff  !important;
     width: 50px;
 }
 
-.item_nueva a button h1 {
+.item_hogar a button h1 {
     margin-right: 10px;
     font-size: 20px;
 }
@@ -75,8 +74,7 @@ header nav img {
 }
 
 .item_editar a button img {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
     width: 50px;
 }
 
@@ -102,8 +100,7 @@ header nav img {
 }
 
 .item_borrar a button img {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
     width: 50px;
 }
 
