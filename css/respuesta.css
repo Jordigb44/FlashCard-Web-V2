@@ -1,4 +1,11 @@
 /* Estilos generales */
+@font-face {
+    font-family: 'Montserrat-Ace-Medium';
+    src: url('./fonts/Montserrat-Ace-Medium.otf');
+}
+*{
+    font-family: 'Montserrat-Ace-Medium', sans-serif;
+}
 body {
     background-color: #FFAF9D;
     margin: 10px;
@@ -113,14 +120,12 @@ header nav img {
 /* Estilos para el contenedor grid */
 .grid_flashcard {
     display: grid;
-    gap: 20px;
     grid-template-columns: [x0] 0fr [x1] 0.5fr [x2] 0.5fr [x3] 0.5fr [x4];
-    grid-template-rows: [y0] 0fr [y1] 0fr [y2] 0.2fr [y3] 0fr [y4];
+    grid-template-rows: [y0] 0.5fr [y1] 0.5fr [y2] 0.5fr [y3] 0.5fr [y4];
     width: 60%;
     height: fit-content;
-    padding: 20px;
-    text-align: center;
-    overflow: hidden;
+    margin-left: 20%;
+    gap: 20px;
     background: rgba(255, 211, 160, 1);
     border: 1px solid white;
     border-radius: 10%;
@@ -129,17 +134,22 @@ header nav img {
     align-items: center;
     justify-items: center;
     justify-content: center;
-    margin-left: 20%;
+    overflow: hidden;
 }
 
 /* Estilos para elementos dentro del contenedor */
 .item_pregunta {
-    font-size: 24px;
+    margin: 10%;
+    margin-top: -25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 38px;
+    height: 120px;
     color: white;
     grid-column: x0 / x4;
     grid-row: y0 / y1;
     text-decoration: underline;
-    text-wrap: auto;
+    text-wrap: wrap;
 }
 
 .item_imagen {
@@ -149,6 +159,7 @@ header nav img {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: -10%;
 }
 
 .item_imagen img {
@@ -220,6 +231,8 @@ header nav img {
         margin-top: 10px;
         grid-row: 3;
         grid-column: 2;
-
+    }
+    .grid_flashcard{
+        grid-template-rows: [y0] 0.5fr [y1] 2fr [y2] 0.5fr [y3] 0.5fr [y4];
     }
 }
