@@ -19,8 +19,8 @@ header nav img {
 
 .grid_botones {
     display: grid;
-    width: 90%;
-    grid-template-columns: repeat(3, 30%);
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 5vh;
     margin-top: 30px;
     margin-bottom: 40px;
@@ -41,17 +41,20 @@ header nav img {
     font-size: 70%;
     color: white;
     border-radius: 20px;
-    background-color: rgba(255, 211, 160, 1);
+    background-color: #FFAF9D;
     grid-auto-flow: row;
 }
-.item_nueva button img{
+
+.item_nueva button img {
     padding-left: 10px;
     padding-right: 10px;
 }
-.item_nueva button h1{
+
+.item_nueva button h1 {
     margin-right: 10px;
 }
-.item_editar button{
+
+.item_editar button {
     height: fit-content;
     display: flex;
     align-items: center;
@@ -59,17 +62,20 @@ header nav img {
     font-size: 70%;
     color: white;
     border-radius: 20px;
-    background-color: rgba(255, 211, 160, 1);
+    background-color: #FFAF9D;
     grid-auto-flow: row;
 }
-.item_editar button img{
+
+.item_editar button img {
     padding-left: 10px;
     padding-right: 10px;
 }
-.item_editar button h1{
+
+.item_editar button h1 {
     padding-right: 10px;
 }
-.item_borrar button{
+
+.item_borrar button {
     height: fit-content;
     display: flex;
     align-items: center;
@@ -77,32 +83,38 @@ header nav img {
     font-size: 70%;
     color: white;
     border-radius: 20px;
-    background-color: rgba(255, 211, 160, 1);
+    background-color: #FFAF9D;
 }
-.item_borrar button img{
+
+.item_borrar button img {
     padding-left: 10px;
     padding-right: 10px;
 }
-.item_borrar button h1{
+
+.item_borrar button h1 {
     padding-right: 10px;
 }
+
 @media (max-width: 768px) {
-    .grid_botones{
+    .grid_botones {
         display: grid;
         gap: 20px;
     }
-    .item_nueva button{
+
+    .item_nueva button {
         margin-top: 30px;
         margin-bottom: 20px;
         grid-row: 2;
         grid-column: 2;
     }
-    .item_editar button{
+
+    .item_editar button {
         margin-top: 10px;
         grid-row: 1;
         grid-column: 2;
     }
-    .item_borrar button{
+
+    .item_borrar button {
         margin-top: 10px;
         grid-row: 3;
         grid-column: 2;
@@ -115,7 +127,7 @@ header nav img {
     background: rgba(255, 211, 160, 1);
     backdrop-filter: blur(5px);
     border-radius: 10%;
-    border: 1px solid black;
+    border: 1px solid white;
     text-align: center;
     overflow: hidden;
     display: grid;
@@ -140,18 +152,15 @@ header nav img {
     grid-row: y1 / y2;
     display: flex;
     flex-direction: column;
-    /* Muestra los elementos en una columna */
     align-items: center;
-    /* Centra horizontalmente los elementos en el contenedor */
     justify-content: center;
-    /* Centra verticalmente los elementos en el contenedor */
 }
 
 .item_imagen img {
     width: 320px;
     height: 280px;
     margin-bottom: 10px;
-    /* Ajusta el espacio entre la imagen y otros elementos */
+    border-radius: 20%;
 }
 
 .item_respuesta {
