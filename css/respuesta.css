@@ -50,7 +50,7 @@ header nav img {
 .item_hogar a button img {
     padding: 10px;
     color: #ffffff  !important;
-    width: 50px;
+    width: 30px;
 }
 
 .item_hogar a button h1 {
@@ -75,7 +75,7 @@ header nav img {
 
 .item_editar a button img {
     padding: 10px;
-    width: 50px;
+    width: 30px;
 }
 
 .item_editar a button h1 {
@@ -101,7 +101,7 @@ header nav img {
 
 .item_borrar a button img {
     padding: 10px;
-    width: 50px;
+    width: 30px;
 }
 
 .item_borrar a button h1 {
