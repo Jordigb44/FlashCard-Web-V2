@@ -17,36 +17,101 @@ header nav img {
     height: 70px;
 }
 
-aside {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente el contenido */
-    align-items: center; /* Centra verticalmente el contenido */
-    height: 30vh; /* Utiliza el 100% de la altura de la pantalla */
-}
-
-aside .container {
-    width: 100%;
-    min-height: 30px;
-    min-width: 30px;
-    color: white;
-}
-
-aside .item {
-    border: 1px solid black;
-    color: white;
-    padding-right: 20px;
-    padding-left: 20px;
-    background: grey;
-    display: flex;
-    justify-content: center;
+.grid_botones {
+    display: grid;
+    width: 90%;
+    grid-template-columns: repeat(3, 30%);
+    grid-template-rows: 5vh;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    margin-left: 8%;
+    margin-right: 8%;
+    text-align: center;
     align-items: center;
+    justify-items: stretch;
+    justify-content: stretch;
+    gap: 10px;
 }
-aside .item img{
-    padding: 10px;}
 
+.item_nueva button {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70%;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(255, 211, 160, 1);
+    grid-auto-flow: row;
+}
+.item_nueva button img{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.item_nueva button h1{
+    margin-right: 10px;
+}
+.item_editar button{
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    font-size: 70%;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(255, 211, 160, 1);
+    grid-auto-flow: row;
+}
+.item_editar button img{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.item_editar button h1{
+    padding-right: 10px;
+}
+.item_borrar button{
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70%;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(255, 211, 160, 1);
+}
+.item_borrar button img{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.item_borrar button h1{
+    padding-right: 10px;
+}
+@media (max-width: 768px) {
+    .grid_botones{
+        display: grid;
+        gap: 20px;
+    }
+    .item_nueva button{
+        margin-top: 30px;
+        margin-bottom: 20px;
+        grid-row: 2;
+        grid-column: 2;
+    }
+    .item_editar button{
+        margin-top: 10px;
+        grid-row: 1;
+        grid-column: 2;
+    }
+    .item_borrar button{
+        margin-top: 10px;
+        grid-row: 3;
+        grid-column: 2;
+
+    }
+}
 
 /* Estilos para el contenedor grid */
-.grid {
+.grid_flashcard {
     background: rgba(255, 211, 160, 1);
     backdrop-filter: blur(5px);
     border-radius: 10%;
@@ -74,15 +139,19 @@ aside .item img{
     grid-column: x0 / x4;
     grid-row: y1 / y2;
     display: flex;
-    flex-direction: column; /* Muestra los elementos en una columna */
-    align-items: center; /* Centra horizontalmente los elementos en el contenedor */
-    justify-content: center; /* Centra verticalmente los elementos en el contenedor */
+    flex-direction: column;
+    /* Muestra los elementos en una columna */
+    align-items: center;
+    /* Centra horizontalmente los elementos en el contenedor */
+    justify-content: center;
+    /* Centra verticalmente los elementos en el contenedor */
 }
 
 .item_imagen img {
     width: 320px;
     height: 280px;
-    margin-bottom: 10px; /* Ajusta el espacio entre la imagen y otros elementos */
+    margin-bottom: 10px;
+    /* Ajusta el espacio entre la imagen y otros elementos */
 }
 
 .item_respuesta {
