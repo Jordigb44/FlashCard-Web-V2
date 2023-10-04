@@ -31,11 +31,11 @@ header nav img {
     gap: 10px;
 }
 
-.item_nueva {
+.item_nueva{
     grid-column-start: x1;
     grid-column-end: x2;
 }
-.item_nueva button {
+.item_nueva a button {
     height: fit-content;
     display: flex;
     align-items: center;
@@ -47,19 +47,20 @@ header nav img {
     grid-auto-flow: row;
 }
 
-.item_nueva button img {
+.item_nueva a button img {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.item_nueva button h1 {
+.item_nueva a button h1 {
     margin-right: 10px;
+    font-size: 20px;
 }
 .item_editar {
     grid-column-start: x2;
     grid-column-end: x3;
 }
-.item_editar button {
+.item_editar a button {
     height: fit-content;
     display: flex;
     align-items: center;
@@ -71,13 +72,14 @@ header nav img {
     grid-auto-flow: row;
 }
 
-.item_editar button img {
+.item_editar a button img {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.item_editar button h1 {
+.item_editar a button h1 {
     padding-right: 10px;
+    font-size: 20px;
 }
 
 .item_borrar {
@@ -85,7 +87,7 @@ header nav img {
     grid-column-end: x4;
 }
 
-.item_borrar button {
+.item_borrar a button {
     height: fit-content;
     display: flex;
     align-items: center;
@@ -96,13 +98,14 @@ header nav img {
     background-color: #FFAF9D;
 }
 
-.item_borrar button img {
+.item_borrar a button img {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.item_borrar button h1 {
+.item_borrar a button h1 {
     padding-right: 10px;
+    font-size: 20px;
 }
 
 

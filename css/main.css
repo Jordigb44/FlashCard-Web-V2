@@ -25,7 +25,8 @@ header nav img{
     justify-content: stretch;
 }
 
-.item_nueva button {
+.item_nueva a button {
+    text-decoration: none;
     height: fit-content;
     display: flex;
     align-items: center;
@@ -37,13 +38,14 @@ header nav img{
     grid-auto-flow: row;
 }
 
-.item_nueva button img {
+.item_nueva a button img {
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.item_nueva button h1 {
+.item_nueva a button h1 {
     margin-right: 10px;
+    font-size: 20px;
 }
 .container {
     display: grid;
