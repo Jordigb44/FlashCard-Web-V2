@@ -50,6 +50,7 @@ header nav img {
 .item_nueva a button img {
     padding-left: 10px;
     padding-right: 10px;
+    color: #ffffff  !important
 }
 
 .item_nueva a button h1 {
