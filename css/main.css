@@ -63,7 +63,8 @@ header nav img{
     padding: 60px;
     padding-top: 10px;
 }
-.item {
+.item button{
+    text-decoration: none;
     background: rgba(255, 211, 160, 100);
     backdrop-filter: 50%;
     border-radius: 10%;
@@ -75,6 +76,9 @@ header nav img{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.item button a{
+    text-decoration: none;
     color: white;
     font-size: medium;
 }

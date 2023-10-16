@@ -50,6 +50,7 @@ header nav img {
     font-size: 70%;
     color: white;
     border-radius: 20px;
+    border-color: #ffffff;
     background-color: #FFAF9D;
     grid-auto-flow: row;
 }
@@ -76,6 +77,7 @@ header nav img {
     font-size: 70%;
     color: white;
     border-radius: 20px;
+    border-color: #ffffff;
     background-color: #FFAF9D;
     grid-auto-flow: row;
 }
@@ -103,6 +105,7 @@ header nav img {
     font-size: 70%;
     color: white;
     border-radius: 20px;
+    border-color: #ffffff;
     background-color: #FFAF9D;
 }
 
