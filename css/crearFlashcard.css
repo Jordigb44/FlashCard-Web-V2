@@ -35,6 +35,7 @@ input {
   /* Agregar relleno interno para separar el texto del borde */
   margin: 5px;
   /* Agregar margen para separar los campos entre sí */
+  
 }
 
 .form-buttons {
@@ -85,11 +86,13 @@ input {
   text-align: center;
 }
 
-.formulario {
-  padding: 10px;
-  border: 100px solid #FFAF9D;
+.formulario textarea {
   align-items: center;
-  border-radius: 10px;
+  max-width: 390px;
+  max-height: 127px;
+  min-width: 390px;
+  min-height: 127px;
+  border-radius: 7px;
 }
 
 .encabezado {
@@ -99,4 +102,11 @@ input {
   height: 200px;
   /* Altura del encabezado */
   max-width: fit-content;
+}
+.contenedorFormulario{
+  
+  height: 260px;
+  background-color: #FFAF9D;
+  border-radius: 10px;
+
 }
