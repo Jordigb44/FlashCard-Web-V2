@@ -167,26 +167,36 @@ header nav img {
     height: 280px;
     margin-bottom: 10px;
     border-radius: 20%;
+    
 }
 
 .item_pista {
     font-size: 20px;
-    color: white;
-    text-align: left;
+    text-align: center;
     background-color: #FFAF9D;
     grid-column: x0 / x4;
     grid-row: y2 / y4;
     margin: 40px;
     margin-top: 0px;
     margin-bottom: 40px;
-    padding: 20px;
+    padding: 40px;
     padding-top: 0px;
     width: 80%;
+    border-radius: 10px;
+
+}
+.item_pista button{
+    text-decoration: none;
+    background-color: #FFAF9D;
+    border-color: #FFAF9D;
+    border-radius: 10px;
 
 }
 
+
 .item_pista h2 {
     text-align: center;
+    
 }
 @media (max-width: 768px) {
     .grid_botones {
