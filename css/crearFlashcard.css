@@ -6,7 +6,6 @@
 
 * {
   font-family: 'Montserrat-Ace-Medium', sans-serif;
-  color: #fff;
 }
 
 body {
@@ -87,6 +86,9 @@ input {
   text-align: center;
 }
 
+.contenedorFormulario h2{
+  color: white;
+}
 .formulario textarea {
   align-items: center;
   max-width: 390px;
