@@ -237,3 +237,35 @@ header nav img {
 .mostrar-formulario:focus + .formulario {
     display: block;
 }
+
+.item_respuesta {
+    grid-column-start: x2;
+    grid-column-end: x3;
+}
+.item_respuesta a button {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70%;
+    color: white;
+    border-radius: 20px;
+    background-color: #FFAF9D;
+    border-color: #ffffff;
+    grid-auto-flow: dense;
+}
+
+.item_respuesta a button img {
+    padding: 10px;
+    width: 30px;
+}
+
+.item_respuesta a button h1 {
+    padding-right: 10px;
+    font-size: 20px;
+}
+.item_respuesta button {
+    margin-top: -30px;
+    grid-row: 1;
+    grid-column: 2;
+}
