@@ -241,6 +241,7 @@ header nav img {
 .item_respuesta {
     grid-column-start: x2;
     grid-column-end: x3;
+    padding-bottom: 20px;
 }
 .item_respuesta a button {
     height: fit-content;
