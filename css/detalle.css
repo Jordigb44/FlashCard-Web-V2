@@ -234,6 +234,7 @@ header nav img {
     display: none;
 }
 
+
 .mostrar-formulario:focus + .formulario {
     display: block;
 }
