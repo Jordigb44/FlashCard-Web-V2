@@ -83,7 +83,7 @@ input {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  grid-template-rows: repeat(8, auto); /* Cuatro filas */
+  grid-template-rows: repeat(2, auto); /* Cuatro filas */
   gap: 50px; /* Espacio entre las celdas */
   margin-top: 5%;
   margin-left: 10px;
