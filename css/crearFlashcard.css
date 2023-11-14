@@ -37,7 +37,10 @@ input {
   /* Agregar margen para separar los campos entre sí */
   
 }
-
+ textarea{
+  resize: none
+ }
+ 
 .form-buttons {
 
   margin-top: -15px;
