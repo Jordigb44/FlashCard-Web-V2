@@ -24,8 +24,8 @@ html, body {
     background: #FFAF9D;
     border-color: white;
     text-decoration: solid;
-    border-radius: 20px;
 }
+
 .btn-group {
     gap: 10px;
 }
