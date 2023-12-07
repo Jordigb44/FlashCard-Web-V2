@@ -30,7 +30,7 @@
     <section class="container mt-4" style="background-color: #FFAF9D !important;">
         <div class="btn-group d-flex flex-wrap justify-content-center">
             {{#preguntas}}
-                <a href="/respuesta/{{id}}" class="btn btn-secondary mb-3">
+                <a href="/respuesta/{{id}}" class="btn btn-secondary mb-3" style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                     {{pregunta}}
                 </a>
             {{/preguntas}}
