@@ -30,7 +30,6 @@ html, body {
 #container_pregunta{
     background-color: rgba(255, 211, 160, 1);
     border-radius: 20px;
-    padding: 20px;
 }
 .item_pregunta h1{
     font-size: 58px;
