@@ -8,10 +8,11 @@
     font-family: 'Montserrat-Ace-Medium', sans-serif;
 }
 
+
 html, body {
     background-color: #FFAF9D !important;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .btn {
@@ -20,7 +21,7 @@ html, body {
     text-align: center;
     overflow: hidden;
     white-space: nowrap;
-    backdrop-filter: blur(5px); /* Ajusta según tus necesidades */
+    backdrop-filter: blur(5px);
     background: #FFAF9D;
     border-color: white;
     text-decoration: solid;
