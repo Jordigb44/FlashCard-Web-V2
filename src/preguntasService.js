@@ -28,7 +28,9 @@ const preguntasService = {
 
   addPregunta: (imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, tema, dificultad, comentarios) => {
     const newId = preguntas.length + 1;
-    const newPregunta = { id: newId, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, tema, dificultad, comentarios };
+    const newPregunta = { id: newId, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, tema, dificultad, comentarios: []  };
+    if (comentarios){
+      newPregunta.comentarios.push(comentarios);}
     preguntas.push(newPregunta);
     return preguntas;
   },
