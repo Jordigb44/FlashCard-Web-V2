@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/respuesta.css">
 </head>
 
-<body class="bg-light p-4"  style="background-color: #FFAF9D !important;">
+<body class="bg-light p-4" style="background-color: #FFAF9D !important;">
 
     <header class="text-center py-4">
         <nav>
@@ -34,7 +34,8 @@
             <div class="col-md-4 text-center mb-4 h-auto w-auto m-0 p-0">
                 <form action="/delete/{{id}}" method="post">
                     <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center h-auto w-auto">
-                        <img src="/images/trash.png" alt="Trash Icon" class="img-fluid" style="width: 25px; height: 25px;">
+                        <img src="/images/trash.png" alt="Trash Icon" class="img-fluid"
+                            style="width: 25px; height: 25px;">
                         <h1 class="ms-2 fs-4 m-0">Eliminar</h1>
                     </button>
                 </form>
@@ -54,24 +55,28 @@
         <div class="row">
             <div class="col-12">
                 <div class="grid_flashcard">
-                    <div class="item_pregunta w-auto h-auto align-content-md-center m-2 pt-4" style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
+                    <div class="item_pregunta w-auto h-auto align-content-md-center m-2 pt-4"
+                        style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                         <h1 class="h-auto w-auto text-center mb-0">{{pregunta}}</h1>
-                        <div class="d-flex flex-column flex-md-row justify-content-sm-center text-white fw-bolder mt-0 pt-3">
+                        <div
+                            class="d-flex flex-column flex-md-row justify-content-sm-center text-white fw-bolder mt-0 pt-3">
                             <h3 class="text-center pe-5 fs-1 mb-0">Tema - {{tema}}</h3>
                             <h3 class="text-center fs-1">Dificultad {{dificultad}}</h3>
                         </div>
                     </div>
                     <div class="item_imagen text-center w-auto h-auto align-content-md-center p-3">
-                        <img src="https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200638/196354278-달에-앉아-우주-비행사의-만화-이미지-고품질-일러스트레이션.jpg"
+                        <img src="{{{imagen_pregunta_url}}}"
                             alt="Imagen" class="img-fluid" style="width: 250pt; height: 250pt; border-radius: 20px;">
                     </div>
-                    <div class="item_respuesta_suya m-4 p-3" style="background-color: red; color: white; border-radius: 20px;">
-                        <h2 class="h-auto w-auto text-center">Respuesta suya</h2>
-                        <p class="fs-5">Esta es la respuesta suya</p>
-                    </div>
-                    <div class="item_respuesta m-4 p-3" style="background-color: #FFAF9D; color: white; border-radius: 20px;">
+                    <div class="item_respuesta m-4 p-3"
+                        style="background-color: #FFAF9D; color: white; border-radius: 20px;">
                         <h2 class="h-auto w-auto text-center">Respuesta correcta</h2>
+                        <div class="item_imagen text-center w-auto h-auto align-content-md-center p-3">
+                            <img src="{{{imagen_respuesta_url}}}" alt="Imagen" class="img-fluid"
+                                style="width: 250pt; height: 250pt; border-radius: 20px;">
+                        </div>
                         <p class="fs-5">{{respuesta}}</p>
+
                     </div>
                 </div>
             </div>
