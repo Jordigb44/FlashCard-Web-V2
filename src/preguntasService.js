@@ -74,9 +74,6 @@ const preguntasService = {
   if (pregunta) {
     // Agrega el nuevo comentario a la lista de comentarios de la pregunta
     pregunta.comentarios.push(nuevoComentario);
-  
-    // Imprime la pregunta actualizada
-    console.log(pregunta);
   } else {
     console.log("Pregunta no encontrada");
   }
@@ -97,8 +94,6 @@ const preguntasService = {
     pregunta2.dificultad = dificultad;
     pregunta2.tema = tema
     pregunta2.comentarios.push(nuevoComentario);
-    // Imprime la pregunta actualizada
-    console.log(pregunta2);
   } else {
     console.log("Pregunta no encontrada");
   }
