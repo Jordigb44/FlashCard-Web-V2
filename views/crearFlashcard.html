@@ -15,7 +15,7 @@
             <img src="images/header.jpeg">
         </nav>
     </header>
-    <div class="grid-container">
+    <div class="grid-container align-content-center align-items-center ">
         <div class="contenedorFormulario">
             <h2>Pregunta: </h2>
             <form class="formulario">
@@ -39,6 +39,12 @@
             <form class="formulario">
                 <input type="text" id="imagenRespuesta" name="imagenRespuesta" pattern="^(https?)://[^\s/$.?#].[^\s]*$"
                     title="Solo se permiten caracteres alfabéticos" required>
+            </form>
+        </div>
+        <div class="contenedorFormulario">
+            <h2>Tema de la pregunta: </h2>
+            <form class="formulario">
+                <textarea id="temaPregunta" name="temaPregunta" rows="4" cols="50" required></textarea>
             </form>
         </div>
 
