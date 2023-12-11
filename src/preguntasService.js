@@ -65,7 +65,25 @@ const preguntasService = {
     }
     return null;
   },
- 
+ agregarComentario: (id, nuevoComentario) =>{
+  
+  // Encuentra la pregunta en el array
+  const pregunta = preguntas.find((p) => p.id === id);
+  
+  // Verifica si la pregunta existe
+  if (pregunta) {
+    // Agrega el nuevo comentario a la lista de comentarios de la pregunta
+    pregunta.comentarios.push(nuevoComentario);
+  
+    // Imprime la pregunta actualizada
+    console.log(pregunta);
+  } else {
+    console.log("Pregunta no encontrada");
+  }
+
+
+
+ }
 
 };
 
