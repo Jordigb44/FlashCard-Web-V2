@@ -81,9 +81,27 @@ const preguntasService = {
     console.log("Pregunta no encontrada");
   }
 
-
-
- }
+ },
+ actualizar2Preguntas: (id,  imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, nuevoComentario) =>{
+  
+  // Encuentra la pregunta en el array
+  const pregunta2 = preguntas.find((p) => p.id === id);
+  
+  // Verifica si la pregunta existe
+  if (pregunta2) {
+    // Agrega el nuevo comentario a la lista de comentarios de la pregunta
+    pregunta2.imagen_pregunta_url = imagen_pregunta_url;
+    pregunta2.imagen_respuesta_url = imagen_respuesta_url;
+    pregunta2.pregunta = pregunta;
+    pregunta2.respuesta = respuesta;
+    pregunta2.dificultad = dificultad;
+    pregunta2.comentarios.push(nuevoComentario);
+    // Imprime la pregunta actualizada
+    console.log(pregunta2);
+  } else {
+    console.log("Pregunta no encontrada");
+  }
+}
 
 };
 

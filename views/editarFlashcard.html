@@ -40,6 +40,12 @@
                 <textarea id="imagenRespuesta" name="imagenRespuesta" rows="4" cols="50" required>{{{imagen_respuesta_url}}}</textarea>
             </form>
         </div>
+        <div class="contenedorFormulario">
+            <h2>Seleccione el tema de esta pregunta: </h2>
+            <form class="formulario">
+                <textarea id="temaRespuesta" name="temaRespuesta" rows="4" cols="50" required>{{{tema}}}</textarea>
+            </form>
+        </div>
 
         <div>
             <h6>Selecciona la dificultad:</h6>
@@ -76,12 +82,12 @@
     <script>
         // function guardarEditPregunta() 
          function guardarEditPregunta() {
-            var id = document.getElementById('id').value;
+            var id = id;
             var pregunta = document.getElementById('pregunta').value;
             var respuesta = document.getElementById('respuesta').value;
             var imagenPregunta = document.getElementById('imagenPregunta').value;
             var imagenRespuesta = document.getElementById('imagenRespuesta').value;
-            var tema = "5"; // Obtén el valor del tema según tu lógica
+            var tema =document.getElementById('temaRespuesta').value;; // Obtén el valor del tema según tu lógica
             var dificultad = document.querySelector('input[name="dificultad"]:checked');
             var comentarios = document.getElementById('comentario').value;
 
@@ -94,12 +100,11 @@
                     if (regex.test(imagenRespuesta) && regex.test(imagenPregunta)) {
                         // Crear un formulario dinámico para enviar los datos al servidor
                         var form = document.createElement('form');
-                        form.action = '/actualizarPregunta';  // Reemplaza con la URL correcta
+                        form.action = '/add2Pregunta/{{id}}';  // Reemplaza con la URL correcta
                         form.method = 'POST';
 
                         // Crear campos de formulario y agregarlos al formulario
                         var campos = {
-                            id: id,
                             pregunta: pregunta,
                             respuesta: respuesta,
                             imagenPregunta: imagenPregunta,
