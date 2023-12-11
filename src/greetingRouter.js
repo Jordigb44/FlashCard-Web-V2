@@ -44,10 +44,7 @@ router.post('/addComentario/:id', (req, res) => {
     const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
   preguntasService.agregarComentario(id, ComentarioNuevo);
-  res.send(`-${ComentarioNuevo}-`)
-
-  // Puedes redirigir a la página de detalles o hacer algo más aquí
-  // res.redirect(`/detalle/${newPregunta.id}`); -${dificultad}-  const dificultad = req.body.dificultad;
+  res.redirect(`/detalle/${id}`)
 });
 router.post('/addPregunta', (req, res) => {
   const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentarios } = req.body;
