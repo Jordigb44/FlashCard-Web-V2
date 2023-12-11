@@ -82,7 +82,7 @@ const preguntasService = {
   }
 
  },
- actualizar2Preguntas: (id,  imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, nuevoComentario) =>{
+ actualizar2Preguntas: (id,  imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) =>{
   
   // Encuentra la pregunta en el array
   const pregunta2 = preguntas.find((p) => p.id === id);
@@ -95,6 +95,7 @@ const preguntasService = {
     pregunta2.pregunta = pregunta;
     pregunta2.respuesta = respuesta;
     pregunta2.dificultad = dificultad;
+    pregunta2.tema = tema
     pregunta2.comentarios.push(nuevoComentario);
     // Imprime la pregunta actualizada
     console.log(pregunta2);

@@ -49,7 +49,7 @@ router.post('/addComentario/:id', (req, res) => {
 router.post('/add2Pregunta/:id', (req, res) => {
   const id = parseInt(req.params.id)
 const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentarios} = req.body;
-preguntasService.actualizar2Preguntas(id,  imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, comentarios);
+preguntasService.actualizar2Preguntas(id,  imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, tema, comentarios);
 res.redirect(`/detalle/${id}`)
 });
 router.post('/addPregunta', (req, res) => {
