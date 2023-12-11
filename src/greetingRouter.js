@@ -40,9 +40,10 @@ router.get('/error/:id/:eror_mes', (req, res) => {
   res.render('error404', data);
 });
 
-router.post('/addComentario', (req, res) => {
+router.post('/addComentario/:id', (req, res) => {
+    const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
- 
+  preguntasService.agregarComentario(id, ComentarioNuevo);
   res.send(`-${ComentarioNuevo}-`)
 
   // Puedes redirigir a la página de detalles o hacer algo más aquí
