@@ -62,8 +62,8 @@
 
             <div id="formulario-container">
                 <form action="/addComentario" method="post" id="miFormulario">
-                    <label for="comentario">Comentario:</label>
-                    <input name="ComentarioNuevo" type="text" id="comentario" required>
+                <label for="comentario">Comentario:</label>
+                <input name="ComentarioNuevo" type="text" id="comentario" required>
                 </form>
             </div>
         </div>
@@ -87,51 +87,33 @@
             var tema = document.getElementById('temaRespuesta').value;
             var dificultad = document.querySelector('input[name="dificultad"]:checked');
             var comentarios = document.getElementById('comentario').value;
+            // Crear un formulario dinámico para enviar los datos al servidor
+            var form = document.createElement('form');
+                form.action = '/addPregunta';  // Reemplaza con la URL correcta
+                form.method = 'POST';
 
-            // Comprobar si los campos son válidos
-            if (pregunta && respuesta && imagenPregunta && imagenRespuesta && dificultad) {
-                // Comprobar que la dificultad es una de las opciones permitidas
-                var dificultadValue = dificultad.value;
-                if (dificultadValue === 'baja' || dificultadValue === 'media' || dificultadValue === 'alta') {
-                    var regex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/;
-                    if (regex.test(imagenRespuesta) && regex.test(imagenPregunta)) {
-                        // Crear un formulario dinámico para enviar los datos al servidor
-                        var form = document.createElement('form');
-                        form.action = '/addPregunta';  // Reemplaza con la URL correcta
-                        form.method = 'POST';
+                // Crear campos de formulario y agregarlos al formulario
+                var campos = {
+                    pregunta: pregunta,
+                    respuesta: respuesta,
+                    imagenPregunta: imagenPregunta,
+                    imagenRespuesta: imagenRespuesta,
+                    tema: tema,
+                    dificultad: dificultadValue,
+                    comentarios: comentarios
+                };
 
-                        // Crear campos de formulario y agregarlos al formulario
-                        var campos = {
-                            pregunta: pregunta,
-                            respuesta: respuesta,
-                            imagenPregunta: imagenPregunta,
-                            imagenRespuesta: imagenRespuesta,
-                            tema: tema,
-                            dificultad: dificultadValue,
-                            comentarios: comentarios
-                        };
-
-                        for (var key in campos) {
-                            var input = document.createElement('input');
-                            input.type = 'hidden';
-                            input.name = key;
-                            input.value = campos[key];
-                            form.appendChild(input);
-                        }
-
-                        // Agregar el formulario al cuerpo del documento y enviarlo
-                        document.body.appendChild(form);
-                        form.submit();
-                    } else {
-                        alert('Compruebe que en los casos en los que se requieren URLs, estas aparecen en el formato adecuado.');
-                    }
-
-                } else {
-                    alert('Selecciona una dificultad válida (baja, media o alta).');
+                for (var key in campos) {
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = campos[key];
+                    form.appendChild(input);
                 }
-            } else {
-                alert('Por favor, completa todos los campos.');
-            }
+
+                // Agregar el formulario al cuerpo del documento y enviarlo
+                document.body.appendChild(form);
+                form.submit();
         }
     </script>
 
