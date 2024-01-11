@@ -4,8 +4,9 @@ let nextId = 0
 
 const preguntasService = {
   getPreguntas: () => {
-    return [...preguntas.values()];;
+    return[...preguntas.values()]
   },
+
 
   getPreguntaById: (id) => {
     return preguntas.get(id)
@@ -14,6 +15,7 @@ const preguntasService = {
   addPregunta: (newPregunta) => {
     let id = nextId++;
     preguntas.id = id.toString();
+    newPregunta.id = id
     preguntas.set(preguntas.id, newPregunta);
     return preguntas;
   },
