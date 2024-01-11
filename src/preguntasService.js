@@ -9,12 +9,13 @@ const preguntasService = {
 
 
   getPreguntaById: (id) => {
+    console.log(preguntas)
     return preguntas.get(id)
   },
 
   addPregunta: (newPregunta) => {
     let id = nextId++;
-    preguntas.id = id.toString();
+    preguntas.id = id;
     newPregunta.id = id
     preguntas.set(preguntas.id, newPregunta);
     return preguntas;

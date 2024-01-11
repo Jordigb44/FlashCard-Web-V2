@@ -22,7 +22,7 @@ router.get('/detalle/:id', (req, res) => {
 
 
 router.get('/respuesta/:id', (req, res) => {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.params.id).toString();
     const data = {
       preguntas: preguntasService.getPreguntaById(id),
     };
@@ -30,7 +30,7 @@ router.get('/respuesta/:id', (req, res) => {
   });
 
 router.get('/error/:id/:eror_mes', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id).toString();
   const data = {
     errores: {id: req.params.id,
               error_msg: req.params.eror_mes
@@ -41,22 +41,24 @@ router.get('/error/:id/:eror_mes', (req, res) => {
 });
 
 router.post('/addComentario/:id', (req, res) => {
-    const id = parseInt(req.params.id)
+    const id = parseInt(req.params.id).toString()
   const ComentarioNuevo = req.body.ComentarioNuevo;
   preguntasService.agregarComentario(id, ComentarioNuevo);
   res.redirect(`/detalle/${id}`)
 });
 router.post('/add2Pregunta/:id', (req, res) => {
-  const id = parseInt(req.params.id)
+  const id = parseInt(req.params.id).toString()
 const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentarios} = req.body;
 preguntasService.actualizar2Preguntas(id,  imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, tema, comentarios);
 res.redirect(`/detalle/${id}`)
 });
+
 router.post('/addPregunta', (req, res) => {
   const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentarios } = req.body;
 
   // Llamar al servicio de preguntas para agregar la pregunta
-  const addPregunta = preguntasService.addPregunta(imagenPregunta, imagenRespuesta, pregunta, respuesta, tema, dificultad, comentarios);
+  const nueva_pregunta = {imagen_pregunta_url: imagenPregunta, imagen_respuesta_url: imagenRespuesta, pregunta: pregunta, respuesta: respuesta, tema: tema, dificultad: dificultad, comentarios: [] }
+  const addPregunta = preguntasService.addPregunta(nueva_pregunta);
   if(addPregunta){
     res.redirect("/")
   } else{
@@ -66,7 +68,7 @@ router.post('/addPregunta', (req, res) => {
 });
 
 router.post('/delete/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id).toString();
   const deletedPregunta = preguntasService.deletePregunta(id);
 
   if (deletedPregunta) {
@@ -84,7 +86,7 @@ router.get('/crearFlashcard', (req, res) => {
 
 
 router.get('/edit/:id', (req, res) => {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id).toString();
   const pregunta = preguntasService.getPreguntaById(id);
   res.status(302).render('editarFlashcard', pregunta);
 });
