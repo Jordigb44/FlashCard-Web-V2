@@ -49,7 +49,7 @@
 
         <div>
             <h6>Selecciona la dificultad:</h6>
-            <form>
+            <form id="formDificultad">
                 <input type="radio" id="baja" name="dificultad" value="baja" required>
                 <label for="baja">Baja</label>
 
@@ -80,6 +80,18 @@
     </div>
 
     <script>
+        // Supongamos que la dificultad por defecto viene de un parámetro llamado 'dificultadPorDefecto'
+        const dificultadPorDefecto = "{{dificultad}}";  // Así es como podrías obtener el valor desde tu backend
+
+        // Buscar el radio button correspondiente al valor por defecto y marcarlo
+        const radioButtons = document.getElementById('formDificultad').elements.dificultad;
+        Array.from(radioButtons).forEach(radioButton => {
+            if (radioButton.value === dificultadPorDefecto) {
+                radioButton.checked = true;
+            }
+        });
+
+
         // function guardarEditPregunta()
         function guardarEditPregunta() {
             var id = id;
