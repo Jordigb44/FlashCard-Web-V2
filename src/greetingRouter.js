@@ -163,7 +163,7 @@ router.post('/actualizarPregunta/:id', (req, res) => {
   }
 
   // Llamar al servicio de preguntas para agregar la pregunta
-   const actualizarPregunta = preguntasService.actualizarPregunta(id, imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, tema, comentario);
+   const actualizarPregunta = preguntasService.actualizarPregunta(old_pregunta, id, imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, tema, comentario);
    if(actualizarPregunta){
     res.redirect(`/detalle/${id}`)
   } else{
