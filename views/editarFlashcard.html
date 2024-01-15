@@ -80,8 +80,8 @@
     </div>
 
     <script>
-        // function guardarEditPregunta() 
-         function guardarEditPregunta() {
+        // function guardarEditPregunta()
+        function guardarEditPregunta() {
             var id = id;
             var pregunta = document.getElementById('pregunta').value;
             var respuesta = document.getElementById('respuesta').value;
@@ -91,103 +91,33 @@
             var dificultad = document.querySelector('input[name="dificultad"]:checked');
             var comentarios = document.getElementById('comentario').value;
 
-            // Comprobar si los campos son válidos
-            if (pregunta && respuesta && imagenPregunta && imagenRespuesta && dificultad) {
-                // Comprobar que la dificultad es una de las opciones permitidas
-                var dificultadValue = dificultad.value;
-                if (dificultadValue === 'baja' || dificultadValue === 'media' || dificultadValue === 'alta') {
-                    var regex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/;
-                    if (regex.test(imagenRespuesta) && regex.test(imagenPregunta)) {
-                        // Crear un formulario dinámico para enviar los datos al servidor
-                        var form = document.createElement('form');
-                        form.action = '/add2Pregunta/{{id}}';  // Reemplaza con la URL correcta
-                        form.method = 'POST';
+            // Crear un formulario dinámico para enviar los datos al servidor
+            var form = document.createElement('form');
+            form.action = '/actualizarPregunta/{{id}}';  // Reemplaza con la URL correcta
+            form.method = 'POST'
+            // Crear campos de formulario y agregarlos al formulario
+            var campos = {
+                pregunta: pregunta.toString(),
+                respuesta: respuesta.toString(),
+                imagenPregunta: imagenPregunta,
+                imagenRespuesta: imagenRespuesta,
+                tema: tema.toString(),
+                dificultad: dificultad,
+                comentarios: comentarios
+            };
 
-                        // Crear campos de formulario y agregarlos al formulario
-                        var campos = {
-                            pregunta: pregunta,
-                            respuesta: respuesta,
-                            imagenPregunta: imagenPregunta,
-                            imagenRespuesta: imagenRespuesta,
-                            tema: tema,
-                            dificultad: dificultadValue,
-                            comentarios: comentarios
-                        };
-
-                        for (var key in campos) {
-                            var input = document.createElement('input');
-                            input.type = 'hidden';
-                            input.name = key;
-                            input.value = campos[key];
-                            form.appendChild(input);
-                        }
-
-                        // Agregar el formulario al cuerpo del documento y enviarlo
-                        document.body.appendChild(form);
-                        form.submit();
-                    } else {
-                        alert('Compruebe que en los casos en los que se requieren URLs, estas aparecen en el formato adecuado.');
-                    }
-
-                } else {
-                    alert('Selecciona una dificultad válida (baja, media o alta).');
-                }
-            } else {
-                alert('Por favor, completa todos los campos.');
+            for (var key in campos) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key;
+                input.value = campos[key];
+                form.appendChild(input);
             }
+
+            // Agregar el formulario al cuerpo del documento y enviarlo
+            document.body.appendChild(form);
+            form.submit();
         }
-        //     var id = document.getElementById('id').value;
-        //     var pregunta = document.getElementById('pregunta').value;
-        //     var respuesta = document.getElementById('respuesta').value;
-        //     var imagenPregunta = document.getElementById('imagenPregunta').value;
-        //     var imagenRespuesta = document.getElementById('imagenRespuesta').value;
-        //     var dificultad = document.querySelector('input[name="dificultad"]:checked');
-
-        //     // Comprobar si los campos son válidos
-        //     if (pregunta && respuesta && imagenPregunta && imagenRespuesta && dificultad) {
-        //         // Comprobar que la dificultad es una de las opciones permitidas
-        //         var dificultadValue = dificultad.value;
-        //         if (dificultadValue === 'baja' || dificultadValue === 'media' || dificultadValue === 'alta') {
-        //             var regex = /^(https?):\/\/[^\s/$.?#].[^\s]*$/;
-        //             if (regex.test(imagenRespuesta) && regex.test(imagenPregunta)) {
-        //                 // Crear un formulario dinámico para enviar los datos al servidor
-        //                 var form = document.createElement('form');
-        //                 form.action = `/editPregunta`;  // Reemplaza con la URL correcta
-        //                 form.method = 'POST';
-
-        //                 // Crear campos de formulario y agregarlos al formulario
-        //                 var campos = {
-        //                     id: id,
-        //                     pregunta: pregunta,
-        //                     respuesta: respuesta,
-        //                     imagenPregunta: imagenPregunta,
-        //                     imagenRespuesta: imagenRespuesta,
-        //                     dificultad: dificultadValue,
-                            
-        //                 };
-
-        //                 for (var key in campos) {
-        //                     var input = document.createElement('input');
-        //                     input.type = 'hidden';
-        //                     input.name = key;
-        //                     input.value = campos[key];
-        //                     form.appendChild(input);
-        //                 }
-
-        //                 // Agregar el formulario al cuerpo del documento y enviarlo
-        //                 document.body.appendChild(form);
-        //                 form.submit();
-        //             } else {
-        //                 alert('Compruebe que en los casos en los que se requieren URLs, estas aparecen en el formato adecuado.');
-        //             }
-
-        //         } else {
-        //             alert('Selecciona una dificultad válida (baja, media o alta).');
-        //         }
-        //     } else {
-        //         alert('Por favor, completa todos los campos.');
-        //     }
-        // }
     </script>
 
 </body>

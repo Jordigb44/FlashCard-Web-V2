@@ -34,22 +34,6 @@ const preguntasService = {
     return preguntas.delete(id);
   },
 
-  actualizarPregunta: (id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad) => {
-    const preguntaToUpdate = preguntas.get(id);
-
-    if (preguntaToUpdate) {
-        preguntaToUpdate.pregunta = pregunta;
-        preguntaToUpdate.respuesta = respuesta;
-        preguntaToUpdate.imagen_pregunta_url = imagen_pregunta_url;
-        preguntaToUpdate.imagen_respuesta_url = imagen_respuesta_url;
-        preguntaToUpdate.dificultad = dificultad;
-        
-        return preguntaToUpdate;
-    }
-
-    return null;
-  },
-
   agregarComentario: (id, nuevoComentario) => {
     const pregunta = preguntas.get(id);
 
@@ -62,7 +46,7 @@ const preguntasService = {
     }
   },
 
-  actualizar2Preguntas: (id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) => {
+  actualizarPregunta: (id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) => {
     const preguntaToUpdate = preguntas.get(id);
 
     // Verifica si la pregunta existe
