@@ -82,6 +82,7 @@
     <script>
         // Supongamos que la dificultad por defecto viene de un parámetro llamado 'dificultadPorDefecto'
         const dificultadPorDefecto = "{{dificultad}}";  // Así es como podrías obtener el valor desde tu backend
+        var old_pregunta = document.getElementById('pregunta').value
 
         // Buscar el radio button correspondiente al valor por defecto y marcarlo
         const radioButtons = document.getElementById('formDificultad').elements.dificultad;
@@ -158,7 +159,6 @@
                 mensajeExistente.style.display = 'none';
             }, 3000);
         }
-        var old_pregunta = document.getElementById('pregunta').value
         verificarPreguntaEnTiempoReal();
 
         // function guardarEditPregunta()
