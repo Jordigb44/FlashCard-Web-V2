@@ -108,6 +108,7 @@ router.get('/crearFlashcard', (req, res) => {
 router.get('/edit/:id', (req, res) => {
   const id = parseInt(req.params.id).toString();
   const pregunta = preguntasService.getPreguntaById(id);
+  console.log(pregunta)
   res.status(302).render('editarFlashcard', pregunta);
 });
 

@@ -9,7 +9,6 @@ const preguntasService = {
 
 
   getPreguntaById: (id) => {
-    console.log(preguntas)
     return preguntas.get(id)
   },
 
@@ -59,7 +58,7 @@ const preguntasService = {
         // Agrega el nuevo comentario a la lista de comentarios de la pregunta
         pregunta.comentarios.push(nuevoComentario);
     } else {
-        console.log("Pregunta no encontrada");
+        res.status(404).redirect(`/error/AgregarComentario/No se pudo agregar el comentario`)
     }
   },
 
@@ -79,7 +78,7 @@ const preguntasService = {
         // Agrega el nuevo comentario a la lista de comentarios de la pregunta
         preguntaToUpdate.comentarios.push(nuevoComentario);
     } else {
-        console.log("Pregunta no encontrada");
+      res.status(404).redirect(`/error/AgregarComentario/No se pudo actualizar la pregunta`)
     }
   },
 
