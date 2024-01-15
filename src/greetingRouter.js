@@ -128,7 +128,7 @@ router.post('/addPregunta', (req, res) => {
 
 router.post('/actualizarPregunta/:id', (req, res) => {
   const id = parseInt(req.params.id)
-  const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentario } = req.body;
+  const { old_pregunta, pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentario } = req.body;
 
   // Comprabamos las entradas
   if (![pregunta].every(texto => typeof texto === 'string')) {
@@ -136,16 +136,16 @@ router.post('/actualizarPregunta/:id', (req, res) => {
   }
   const preguntasEnBaseDeDatos = preguntasService.getPreguntas().map(pregunta => pregunta.pregunta);
   const existe = preguntasEnBaseDeDatos.includes(pregunta);
-  if (existe) {
+  if (existe && pregunta != old_pregunta) {
     res.status(404).redirect(`/error/nuevaPregunta/La pregunta ya existe`);
   }
   if (![respuesta].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/actualizarPregunta/La respuesta no es de tipo texto`)
   }
-  if (respuesta.length()<50) {
+  if (respuesta.length<50) {
     res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
   }
-  if (respuesta.length()>50) {
+  if (respuesta.length>500) {
     res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
   }
   if (![tema].every(texto => typeof texto === 'string')) {

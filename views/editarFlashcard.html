@@ -105,7 +105,7 @@
 
                 // Verificar si la pregunta ya existe en el servidor
                 verificarPreguntaExistente(pregunta, function (existe) {
-                    if (existe) {
+                    if (existe && pregunta !== old_pregunta) {
                         // Mostrar mensaje de pregunta ya existente
                         mostrarMensajePreguntaExistente();
                     } else {
@@ -158,6 +158,7 @@
                 mensajeExistente.style.display = 'none';
             }, 3000);
         }
+        var old_pregunta = document.getElementById('pregunta').value
         verificarPreguntaEnTiempoReal();
 
         // function guardarEditPregunta()
@@ -177,6 +178,7 @@
             form.method = 'POST'
             // Crear campos de formulario y agregarlos al formulario
             var campos = {
+                old_pregunta: old_pregunta.toString(),
                 pregunta: pregunta.toString(),
                 respuesta: respuesta.toString(),
                 imagenPregunta: imagenPregunta,
