@@ -26,8 +26,15 @@ router.get('/getPreguntas', (req, res) => {
 
 router.get('/detalle/:id', (req, res) => {
   const id = parseInt(req.params.id);
+  const pregunta = preguntasService.getPreguntaById(id);
+  
+  // Verificar si la propiedad 'comentarios' está vacía y cambiarla a un string vacío
+  if (pregunta && pregunta.comentarios && pregunta.comentarios.length === 0) {
+    pregunta.comentarios = "";
+  }
+
   const data = {
-    preguntas: preguntasService.getPreguntaById(id),
+    preguntas: pregunta,
   };
   res.render('detalle', data);
 });
