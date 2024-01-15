@@ -52,6 +52,17 @@ router.get('/error/:id/:eror_mes', (req, res) => {
   res.render('error404', data);
 });
 
+router.get('/verificarPregunta', (req, res) => {
+  const pregunta = req.query.pregunta;
+
+  // Verificar si la pregunta ya existe en la base de datos (simulado)
+  const preguntasEnBaseDeDatos = preguntasService.getPreguntas().map(pregunta => pregunta.pregunta);
+  const existe = preguntasEnBaseDeDatos.includes(pregunta);
+
+  // Devolver el resultado como JSON
+  res.json({ existe });
+});
+
 router.post('/addComentario/:id', (req, res) => {
   const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
@@ -66,8 +77,19 @@ router.post('/addPregunta', (req, res) => {
   if (![pregunta].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/nuevaPregunta/La pregunta introducida no es tipo texto`)
   }
+  const preguntasEnBaseDeDatos = preguntasService.getPreguntas().map(pregunta => pregunta.pregunta);
+  const existe = preguntasEnBaseDeDatos.includes(pregunta);
+  if (existe) {
+    res.status(404).redirect(`/error/nuevaPregunta/La pregunta ya existe`);
+  }
   if (![respuesta].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/nuevaPregunta/La respuesta no es de tipo texto`)
+  }
+  if (respuesta.length()<50) {
+    res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
+  }
+  if (respuesta.length()>50) {
+    res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
   }
   if (![tema].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/nuevaPregunta/El tema introducido no es de tipo texto`)
@@ -100,8 +122,19 @@ router.post('/actualizarPregunta/:id', (req, res) => {
   if (![pregunta].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/actualizarPregunta/La pregunta introducida no es tipo texto`)
   }
+  const preguntasEnBaseDeDatos = preguntasService.getPreguntas().map(pregunta => pregunta.pregunta);
+  const existe = preguntasEnBaseDeDatos.includes(pregunta);
+  if (existe) {
+    res.status(404).redirect(`/error/nuevaPregunta/La pregunta ya existe`);
+  }
   if (![respuesta].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/actualizarPregunta/La respuesta no es de tipo texto`)
+  }
+  if (respuesta.length()<50) {
+    res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
+  }
+  if (respuesta.length()>50) {
+    res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
   }
   if (![tema].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/actualizarPregunta/El tema introducido no es de tipo texto`)

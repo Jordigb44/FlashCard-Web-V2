@@ -91,6 +91,74 @@
             }
         });
 
+        function verificarPreguntaEnTiempoReal() {
+            var preguntaInput = document.getElementById('pregunta');
+            var mensajeExistente = document.getElementById('mensajeExistente');
+
+            // Limpiar el mensaje existente al empezar a escribir
+            if (mensajeExistente) {
+                mensajeExistente.style.display = 'none';
+            }
+
+            preguntaInput.addEventListener('input', function () {
+                var pregunta = preguntaInput.value;
+
+                // Verificar si la pregunta ya existe en el servidor
+                verificarPreguntaExistente(pregunta, function (existe) {
+                    if (existe) {
+                        // Mostrar mensaje de pregunta ya existente
+                        mostrarMensajePreguntaExistente();
+                    } else {
+                        // Limpiar el mensaje existente si la pregunta no existe
+                        if (mensajeExistente) {
+                            mensajeExistente.style.display = 'none';
+                        }
+                    }
+                });
+            });
+        }
+
+        function verificarPreguntaExistente(pregunta, callback) {
+            // Realizar una solicitud AJAX al servidor para verificar la existencia de la pregunta
+            // Reemplaza la URL con la ruta correcta en tu servidor
+            var url = '/verificarPregunta?pregunta=' + encodeURIComponent(pregunta);
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var respuesta = JSON.parse(xhr.responseText);
+                        callback(respuesta.existe);
+                    }
+                }
+            };
+
+            xhr.open('GET', url, true);
+            xhr.send();
+        }
+
+        function mostrarMensajePreguntaExistente() {
+            var preguntaInput = document.getElementById('pregunta');
+            var mensajeExistente = document.getElementById('mensajeExistente');
+
+            // Crear el mensaje de pregunta ya existente si no existe
+            if (!mensajeExistente) {
+                mensajeExistente = document.createElement('div');
+                mensajeExistente.id = 'mensajeExistente';
+                mensajeExistente.className = 'alert alert-danger mt-2';
+                mensajeExistente.textContent = 'Pregunta ya existe';
+                preguntaInput.parentNode.appendChild(mensajeExistente);
+            }
+
+            // Mostrar el mensaje de pregunta ya existente
+            mensajeExistente.style.display = 'block';
+
+            // Ocultar el mensaje después de unos segundos (opcional)
+            setTimeout(function () {
+                mensajeExistente.style.display = 'none';
+            }, 3000);
+        }
+        verificarPreguntaEnTiempoReal();
 
         // function guardarEditPregunta()
         function guardarEditPregunta() {
@@ -100,7 +168,7 @@
             var imagenPregunta = document.getElementById('imagenPregunta').value;
             var imagenRespuesta = document.getElementById('imagenRespuesta').value;
             var tema =document.getElementById('temaRespuesta').value;; // Obtén el valor del tema según tu lógica
-            var dificultad = document.querySelector('input[name="dificultad"]:checked').value;
+            var dificultad = document.querySelector('input[name="dificultad"]').value;
             var comentarios = document.getElementById('comentario').value;
 
             // Crear un formulario dinámico para enviar los datos al servidor
