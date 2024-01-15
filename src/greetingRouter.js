@@ -17,12 +17,13 @@ router.get('/detalle/:id', (req, res) => {
   const data = {
     preguntas: preguntasService.getPreguntaById(id),
   };
+  console.log(data)
   res.render('detalle', data);
 });
 
 
 router.get('/respuesta/:id', (req, res) => {
-    const id = parseInt(req.params.id).toString();
+    const id = parseInt(req.params.id);
     const data = {
       preguntas: preguntasService.getPreguntaById(id),
     };
@@ -30,7 +31,7 @@ router.get('/respuesta/:id', (req, res) => {
   });
 
 router.get('/error/:id/:eror_mes', (req, res) => {
-  const id = parseInt(req.params.id).toString();
+  const id = parseInt(req.params.id);
   const data = {
     errores: {id: req.params.id,
               error_msg: req.params.eror_mes
@@ -41,13 +42,13 @@ router.get('/error/:id/:eror_mes', (req, res) => {
 });
 
 router.post('/addComentario/:id', (req, res) => {
-    const id = parseInt(req.params.id).toString()
+    const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
   preguntasService.agregarComentario(id, ComentarioNuevo);
   res.redirect(`/detalle/${id}`)
 });
 router.post('/add2Pregunta/:id', (req, res) => {
-  const id = parseInt(req.params.id).toString()
+  const id = parseInt(req.params.id)
 const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentarios} = req.body;
 preguntasService.actualizar2Preguntas(id,  imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, tema, comentarios);
 res.redirect(`/detalle/${id}`)
@@ -88,7 +89,7 @@ router.post('/addPregunta', (req, res) => {
 });
 
 router.post('/delete/:id', (req, res) => {
-  const id = parseInt(req.params.id).toString();
+  const id = parseInt(req.params.id);
   const deletedPregunta = preguntasService.deletePregunta(id);
 
   if (deletedPregunta) {
@@ -106,9 +107,8 @@ router.get('/crearFlashcard', (req, res) => {
 
 
 router.get('/edit/:id', (req, res) => {
-  const id = parseInt(req.params.id).toString();
+  const id = parseInt(req.params.id);
   const pregunta = preguntasService.getPreguntaById(id);
-  console.log(pregunta)
   res.status(302).render('editarFlashcard', pregunta);
 });
 
