@@ -46,12 +46,14 @@ const preguntasService = {
     }
   },
 
-  actualizarPregunta: (id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) => {
+  actualizarPregunta: (old_pregunta, id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) => {
     const preguntaToUpdate = preguntas.get(id);
     // Verifica si la pregunta existe
     if (preguntaToUpdate) {
         // Actualiza los datos de la pregunta
-        preguntaToUpdate.imagen_pregunta_url = imagen_pregunta_url;
+        if (old_pregunta != pregunta) {
+          preguntaToUpdate.imagen_pregunta_url = imagen_pregunta_url;
+        }
         preguntaToUpdate.imagen_respuesta_url = imagen_respuesta_url;
         preguntaToUpdate.pregunta = pregunta;
         preguntaToUpdate.respuesta = respuesta;
