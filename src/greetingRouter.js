@@ -54,17 +54,37 @@ res.redirect(`/detalle/${id}`)
 });
 
 router.post('/addPregunta', (req, res) => {
-  const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentarios } = req.body;
+  const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentario } = req.body;
+
+  // Comprabamos las entradas
+  if (![pregunta].every(texto => typeof texto === 'string')) {
+    res.status(404).redirect(`/error/nuevaPregunta/La pregunta introducida no es tipo texto`)
+  }
+  if (![respuesta].every(texto => typeof texto === 'string')) {
+    res.status(404).redirect(`/error/nuevaPregunta/La respuesta no es de tipo texto`)
+  }
+  if (![tema].every(texto => typeof texto === 'string')) {
+    res.status(404).redirect(`/error/nuevaPregunta/El tema introducido no es de tipo texto`)
+  }
+  if (!['baja', 'media', 'alta'].includes(dificultad.toLowerCase())) {
+    res.status(404).redirect(`/error/nuevaPregunta/La dificultad seleccionada no es valido`)
+  }
+  const patronUrl = /^(https?):\/\/[^\s/$.?#].[^\s]*$/;
+  if (![imagenPregunta].every(url => patronUrl.test(url))) {
+    res.status(404).redirect(`/error/nuevaPregunta/La url de la imagen de pregunta no es una url valida`)
+  }
+  if (![imagenRespuesta].every(url => patronUrl.test(url))) {
+    res.status(404).redirect(`/error/nuevaPregunta/La url de la imagen de respuesta no es una url valida`)
+  }
+  
 
   // Llamar al servicio de preguntas para agregar la pregunta
-  const nueva_pregunta = {imagen_pregunta_url: imagenPregunta, imagen_respuesta_url: imagenRespuesta, pregunta: pregunta, respuesta: respuesta, tema: tema, dificultad: dificultad, comentarios: [] }
+  const nueva_pregunta = {imagen_pregunta_url: imagenPregunta, imagen_respuesta_url: imagenRespuesta, pregunta: pregunta, respuesta: respuesta, tema: tema, dificultad: dificultad, comentarios: [comentario] }
   const addPregunta = preguntasService.addPregunta(nueva_pregunta);
   if(addPregunta){
     res.redirect("/")
   } else{
     res.status(404).redirect(`/error/nuevaPregunta/No se pudo agregar la nueva pregunta`)  }
-  // Puedes redirigir a la página de detalles o hacer algo más aquí
-  // res.redirect(`/detalle/${newPregunta.id}`); 
 });
 
 router.post('/delete/:id', (req, res) => {
