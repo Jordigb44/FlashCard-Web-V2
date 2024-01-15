@@ -12,12 +12,23 @@ router.get('/', (req, res) => {
   res.render('index', data);
 });
 
+//AJAX
+router.get('/getPreguntas', (req, res) => {
+  const limit = Number(req.query.limit) || 5;
+  const skip = Number(req.query.skip) || 0;
+
+  const data = {
+    preguntas: preguntasService.getPreguntas().slice(skip, skip + limit),
+  };
+
+  res.json(data);
+});
+
 router.get('/detalle/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const data = {
     preguntas: preguntasService.getPreguntaById(id),
   };
-  console.log(data)
   res.render('detalle', data);
 });
 
