@@ -48,7 +48,6 @@ const preguntasService = {
 
   actualizarPregunta: (id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) => {
     const preguntaToUpdate = preguntas.get(id);
-
     // Verifica si la pregunta existe
     if (preguntaToUpdate) {
         // Actualiza los datos de la pregunta
@@ -60,7 +59,7 @@ const preguntasService = {
         preguntaToUpdate.tema = tema;
         
         // Agrega el nuevo comentario a la lista de comentarios de la pregunta
-        preguntaToUpdate.comentarios.push(nuevoComentario);
+        return preguntaToUpdate.comentarios.push(nuevoComentario);
     } else {
       res.status(404).redirect(`/error/AgregarComentario/No se pudo actualizar la pregunta`)
     }

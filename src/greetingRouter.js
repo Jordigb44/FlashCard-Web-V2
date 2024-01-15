@@ -42,7 +42,7 @@ router.get('/error/:id/:eror_mes', (req, res) => {
 });
 
 router.post('/addComentario/:id', (req, res) => {
-    const id = parseInt(req.params.id)
+  const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
   preguntasService.agregarComentario(id, ComentarioNuevo);
   res.redirect(`/detalle/${id}`)
@@ -82,6 +82,7 @@ router.post('/addPregunta', (req, res) => {
 });
 
 router.post('/actualizarPregunta/:id', (req, res) => {
+  const id = parseInt(req.params.id)
   const { pregunta, respuesta, imagenPregunta, imagenRespuesta, tema, dificultad, comentario } = req.body;
 
   // Comprabamos las entradas
@@ -106,9 +107,9 @@ router.post('/actualizarPregunta/:id', (req, res) => {
   }
 
   // Llamar al servicio de preguntas para agregar la pregunta
-  const nueva_pregunta = {imagen_pregunta_url: imagenPregunta, imagen_respuesta_url: imagenRespuesta, pregunta: pregunta, respuesta: respuesta, tema: tema, dificultad: dificultad, comentarios: [comentario] }
-  const actualizarPregunta = preguntasService.actualizarPregunta(nueva_pregunta);
-  if(actualizarPregunta){
+   const actualizarPregunta = preguntasService.actualizarPregunta(id, imagenPregunta, imagenRespuesta, pregunta, respuesta, dificultad, tema, comentario);
+   console.log(actualizarPregunta)
+   if(actualizarPregunta){
     res.redirect(`/detalle/${id}`)
   } else{
     res.status(404).redirect(`/error/actualizarPregunta/No se pudo agregar la nueva pregunta`)  }
