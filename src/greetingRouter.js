@@ -63,6 +63,18 @@ router.get('/verificarPregunta', (req, res) => {
   res.json({ existe });
 });
 
+// Ruta para realizar la búsqueda de preguntas
+router.get('/searchPreguntas', (req, res) => {
+  const searchTerm = req.query.searchTerm;
+
+  // Realizar la búsqueda utilizando tu servicio de preguntas
+  const preguntasEncontradas = Array.from(preguntasService.getPreguntas().values())
+  .filter(pregunta => pregunta.pregunta.toLowerCase().includes(searchTerm.toLowerCase()));
+
+  // Enviar los resultados como respuesta JSON
+  res.json({ preguntas: preguntasEncontradas });
+});
+
 router.post('/addComentario/:id', (req, res) => {
   const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
