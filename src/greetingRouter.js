@@ -23,6 +23,29 @@ router.get('/getPreguntas', (req, res) => {
 
   res.json(data);
 });
+//AJAX
+router.get('/getFiltro', (req, res) => {
+  const data = {
+    preguntas: preguntasService.getPreguntas(),
+  };
+
+  res.json(data);
+});
+
+router.get('/getPreguntasPorTema', (req, res) => {
+  try {
+    const tema = req.query.tema;
+
+    // Filtra las preguntas por el tema proporcionado
+    const preguntasFiltradas = Array.from(preguntasService.getPreguntas().values())
+      .filter(pregunta => pregunta.tema === tema);
+    // Devuelve las preguntas filtradas como JSON
+    res.json({ preguntas: preguntasFiltradas });
+  } catch (error) {
+    res.status(404).redirect(`/error/obetenrPregunta/Error al obtener las preguntas por tema`)
+  }
+});
+
 
 router.get('/detalle/:id', (req, res) => {
   const id = parseInt(req.params.id);

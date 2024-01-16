@@ -39,9 +39,13 @@
                 </a>
             </div>
             <!-- Barra de búsqueda -->
-            <div class="input-group col-md-4 text-center mb-4 h-auto w-auto">
+            <div class="input-group col-md-4 text-center mb-4 d-flex align-items-center  h-auto w-auto">
                 <input type="text" class="form-control btn-sm d-flex align-items-center" placeholder="Buscar preguntas..." id="searchInput">
                 <button class="btn btn-outline-primary" style="color: white;" type="button" id="searchButton">Buscar</button>
+            </div>
+            <div class="input-group col-md-4 text-center mb-4 d-flex align-items-center  h-auto w-auto">
+                <h1 class="ms-2 fs-4 m-0" style="color: white; border: 1px solid white; padding: 5px;">Filtrar por temas</h1>
+                <select id="filtrarTemas" name="preguntas" style="margin-left: 10px; margin-right: 10px;"></select>
             </div>
         </div>
     </div>
@@ -109,11 +113,67 @@
                     }
                 });
             }
-            
+
+            // Función para filtrar preguntas por tema seleccionado
+            function cargarFiltroTemas() {
+                $.ajax({
+                    url: '/getFiltro',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var temasUnicos = [...new Set(data.preguntas.map(pregunta => pregunta.tema))];
+                        // Ordena los temas alfabéticamente
+                        temasUnicos.sort();
+
+                        var temasListBox = $('#filtrarTemas');
+                        temasListBox.empty();
+                        
+                        // Agrega una opción vacía o deshabilitada al principio
+                        temasListBox.append('<option disabled selected value="">Selecciona un tema</option>');
+
+                        temasUnicos.forEach(function(tema) {
+                            var opcion = $('<option value="' + tema + '">' + tema + '</option>');
+                            temasListBox.append(opcion);
+                        });
+
+                        temasListBox.change(function() {
+                            var temaSeleccionado = $(this).val();
+                            filtrarPreguntasPorTema(temaSeleccionado);
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
+            function filtrarPreguntasPorTema(tema) {
+                $.ajax({
+                    url: '/getPreguntasPorTema',
+                    type: 'GET',
+                    data: { tema: tema },
+                    dataType: 'json',
+                    success: function(data) {
+                        var preguntasContainer = $('.btn-group');
+                        preguntasContainer.empty();
+
+                        data.preguntas.forEach(function(pregunta) {
+                            var preguntaElement = $('<a href="/detalle/' + pregunta.id + '" class="btn btn-secondary mb-3" style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">' + pregunta.pregunta + '</a>');
+                            preguntasContainer.append(preguntaElement);
+                        });
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+
             // Llamar a la función de búsqueda al hacer clic en el botón
             $('#searchButton').click(function() {
                 searchPreguntas();
             });
+              // Llama a la función para cargar las preguntas al cargar la página
+            cargarFiltroTemas();
             </script>
         </div>
     </section>
