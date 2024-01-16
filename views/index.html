@@ -139,6 +139,9 @@
                             temasListBox.append(opcion);
                         });
 
+                        // Agrega la opción "Ninguna" al principio
+                        temasListBox.append('<option value="">Ninguna</option>');
+
                         temasListBox.change(function() {
                             var temaSeleccionado = $(this).val();
                             filtrarPreguntasPorTema(temaSeleccionado);

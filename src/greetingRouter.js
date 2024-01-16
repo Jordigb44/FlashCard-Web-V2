@@ -36,13 +36,21 @@ router.get('/getPreguntasPorTema', (req, res) => {
   try {
     const tema = req.query.tema;
 
+    if(!tema){
+      const data = {
+        preguntas: preguntasService.getPreguntas().slice(0, 5),
+      };
+    
+      res.json(data);
+    }
+
     // Filtra las preguntas por el tema proporcionado
     const preguntasFiltradas = Array.from(preguntasService.getPreguntas().values())
       .filter(pregunta => pregunta.tema === tema);
     // Devuelve las preguntas filtradas como JSON
     res.json({ preguntas: preguntasFiltradas });
   } catch (error) {
-    res.status(404).redirect(`/error/obetenrPregunta/Error al obtener las preguntas por tema`)
+    res.status(404).redirect(`/error/obetenerPregunta/Error al obtener las preguntas por tema`)
   }
 });
 
