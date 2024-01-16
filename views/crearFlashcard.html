@@ -89,27 +89,10 @@
     <script>
 
         function verificarPreguntaEnTiempoReal() {
-            verificarCampoEnTiempoReal('pregunta', /^[A-Z]{1,}/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
+            verificarCampoEnTiempoReal('pregunta', /^[A-Z]/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
             verificarCampoEnTiempoReal('respuesta', /^.{50,450}$/, 'mensajeRespuesta', 'La respuesta debe tener entre 50 y 450 caracteres.');
             verificarCampoEnTiempoReal('imagenPregunta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenPregunta', 'URL de imagen de pregunta no válida.');
             verificarCampoEnTiempoReal('imagenRespuesta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenRespuesta', 'URL de imagen de respuesta no válida.');
-        }
-
-        function verificarCampoEnTiempoReaPreguntal(campoId, regex, mensajeId, mensajeError) {
-            var campo = document.getElementById(campoId);
-            var mensaje = document.getElementById(mensajeId);
-
-            campo.addEventListener('input', function () {
-                var valor = campo.value.trim();
-
-                if (!regex.test(valor) || valor === '') {
-                    mostrarMensajeError(mensaje, mensajeError);
-                    campo.classList.add('is-invalid');
-                } else {
-                    ocultarMensajeError(mensaje);
-                    campo.classList.remove('is-invalid');
-                }
-            });
         }
 
         function verificarCampoEnTiempoReal(campoId, regex, mensajeId, mensajeError) {
@@ -119,9 +102,14 @@
             campo.addEventListener('input', function () {
                 var valor = campo.value.trim();
 
-                if (!regex.test(valor) || valor === '') {
+                if (!regex.test(valor) && valor !== '') {
                     mostrarMensajeError(mensaje, mensajeError);
                     campo.classList.add('is-invalid');
+                } else if (valor === ''){
+                    ocultarMensajeError(mensaje);
+                    mostrarMensajeError(mensaje, 'El campo no puede estar vacío.');
+                    campo.classList.add('is-invalid');
+                
                 } else {
                     ocultarMensajeError(mensaje);
                     campo.classList.remove('is-invalid');
