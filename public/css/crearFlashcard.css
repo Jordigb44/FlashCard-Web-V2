@@ -8,6 +8,7 @@
   font-family: 'Montserrat-Ace-Medium', sans-serif;
 }
 
+
 body {
   background-color: #FFAF9D;
   margin: 10px;
@@ -102,13 +103,16 @@ input {
 .contenedorFormulario h2{
   color: white;
 }
+
 .formulario textarea {
   align-items: center;
+  align-self: start;
   max-width: 390px;
   max-height: 127px;
   min-width: 390px;
   min-height: 127px;
   border-radius: 7px;
+  border: 5px solid #FFDCA8;
 }
 
 .encabezado {
@@ -121,11 +125,16 @@ input {
 }
 .contenedorFormulario{
   
+  
   height: 260px;
   background-color: #FFAF9D;
   border-radius: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #FFDCA8;
 
 }
 

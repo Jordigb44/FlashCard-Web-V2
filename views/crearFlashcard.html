@@ -16,61 +16,69 @@
             <img src="images/header.jpeg">
         </nav>
     </header>
-    <div class="grid-container align-content-center align-items-center ">
-        <div class="contenedorFormulario">
+    <div class="grid-container align-content-center align-items-center">
+        <div class="contenedorFormulario text-center">
             <h2>Pregunta: </h2>
-            <form class="formulario">
-                <textarea id="pregunta" name="pregunta" rows="4" cols="50" required></textarea>
-            </form>
-        </div>
-        <div class="contenedorFormulario">
-            <h2>Respuesta: </h2>
-            <form class="formulario">
-                <textarea id="respuesta" name="respuesta" rows="4" cols="50" required></textarea>
-            </form>
-        </div>
-        <div class="contenedorFormulario">
-            <h2>Imagen Pregunta: </h2>
-            <form class="formulario">
-                <textarea id="imagenPregunta" name="imagenPregunta" rows="4" cols="50" required></textarea>
-            </form>
-        </div>
-        <div class="contenedorFormulario">
-            <h2>Imagen respuesta: </h2>
-            <form class="formulario">
-                <textarea id="imagenRespuesta" name="imagenRespuesta" rows="4" cols="50" required></textarea>
-            </form>
-        </div>
-        <div class="contenedorFormulario">
-            <h2>Seleccione el tema de esta pregunta: </h2>
-            <form class="formulario">
-                <textarea id="temaRespuesta" name="temaRespuesta" rows="4" cols="50" required></textarea>
+            <form class="formulario needs-validation" novalidate>
+                <textarea id="pregunta" name="pregunta" rows="4" cols="50" class="form-control is-invalid text-center" required></textarea>
+                <div id="mensajePregunta" class="invalid-feedback">El campo de pregunta no puede estar vacío.</div>
+                <div id="mensajePregunta" class="invalid-feedback">La pregunta debe comenzar con una letra mayúscula.</div>
             </form>
         </div>
 
-        <div>
+        <div class="contenedorFormulario text-center">
+            <h2>Respuesta: </h2>
+            <form class="formulario needs-validation" novalidate>
+                <textarea id="respuesta" name="respuesta" rows="4" cols="50" class="form-control is-invalid text-center" required></textarea>
+                <div id="mensajeRespuesta" class="invalid-feedback">El campo de respuesta no puede estar vacío.</div>
+            </form>
+        </div>
+        <div class="contenedorFormulario text-center">
+            <h2>Imagen Pregunta: </h2>
+            <form class="formulario needs-validation" novalidate>
+                <textarea id="imagenPregunta" name="imagenPregunta" rows="4" cols="50" class="form-control text-center" required></textarea>
+                <div id="mensajeImagenPregunta" class="invalid-feedback">URL de imagen de pregunta no válida.</div>
+            </form>
+        </div>
+        <div class="contenedorFormulario text-center">
+            <h2>Imagen respuesta: </h2>
+            <form class="formulario needs-validation" novalidate>
+                <textarea id="imagenRespuesta" name="imagenRespuesta" rows="4" cols="50" class="form-control text-center" required></textarea>
+                <div id="mensajeImagenRespuesta" class="invalid-feedback">URL de imagen de respuesta no válida.</div>
+            </form>
+        </div>
+        <div class="contenedorFormulario text-center">
+            <h2>Seleccione el tema de esta pregunta: </h2>
+            <form class="formulario needs-validation" novalidate>
+                <textarea id="temaRespuesta" name="temaRespuesta" rows="4" cols="50" class="form-control text-center" required></textarea>
+                <div id="mensajeTemaRespuesta" class="invalid-feedback">El tema de la pregunta no puede estar vacío.</div>
+            </form>
+        </div>
+
+        <div class="text-center">
             <h6>Selecciona la dificultad:</h6>
-            <form>
+            <form class="needs-validation" novalidate>
                 <input type="radio" id="baja" name="dificultad" value="baja" required>
-                <label for="baja">Baja</label>
+                <label class="form-check-label" for="baja">Baja</label>
 
                 <input type="radio" id="media" name="dificultad" value="media" required>
-                <label for="media">Media</label>
+                <label class="form-check-label" for="media">Media</label>
 
                 <input type="radio" id="alta" name="dificultad" value="alta" required>
-                <label for="alta">Alta</label>
+                <label class="form-check-label" for="alta">Alta</label>
             </form>
 
-            <div id="formulario-container">
-                <form action="/addComentario" method="post" id="miFormulario">
-                <label for="comentario">Comentario:</label>
-                <input name="ComentarioNuevo" type="text" id="comentario" required>
+            <div id="formulario-container" class="text-center">
+                <form action="/addComentario" method="post" id="miFormulario" class="needs-validation" novalidate>
+                    <label for="comentario">Comentario:</label>
+                    <input name="ComentarioNuevo" type="text" id="comentario" class="form-control text-center" required>
+                    <div class="invalid-feedback">El comentario no puede estar vacío.</div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="form-buttons">
+    <div class="form-buttons text-center mt-3">
         <a class="btn-save">
             <button type="button" onclick="guardarPregunta()">Guardar</button>
         </a>
@@ -80,75 +88,46 @@
     </div>
 
     <script>
-        // Esta función realiza la verificación en tiempo real mientras el usuario escribe
+
         function verificarPreguntaEnTiempoReal() {
-            var preguntaInput = document.getElementById('pregunta');
-            var mensajeExistente = document.getElementById('mensajeExistente');
+            verificarCampoEnTiempoReal('pregunta', /^[A-Z]/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
+            verificarCampoEnTiempoReal('respuesta', /^.{50,450}$/, 'mensajeRespuesta', 'La respuesta debe tener entre 50 y 450 caracteres.');
+            verificarCampoEnTiempoReal('imagenPregunta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenPregunta', 'URL de imagen de pregunta no válida.');
+            verificarCampoEnTiempoReal('imagenRespuesta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenRespuesta', 'URL de imagen de respuesta no válida.');
+        }
 
-            // Limpiar el mensaje existente al empezar a escribir
-            if (mensajeExistente) {
-                mensajeExistente.style.display = 'none';
-            }
+        function verificarCampoEnTiempoReal(campoId, regex, mensajeId, mensajeError) {
+            var campo = document.getElementById(campoId);
+            var mensaje = document.getElementById(mensajeId);
 
-            preguntaInput.addEventListener('input', function () {
-                var pregunta = preguntaInput.value;
+            campo.addEventListener('input', function () {
+                var valor = campo.value.trim();
 
-                // Verificar si la pregunta ya existe en el servidor
-                verificarPreguntaExistente(pregunta, function (existe) {
-                    if (existe) {
-                        // Mostrar mensaje de pregunta ya existente
-                        mostrarMensajePreguntaExistente();
-                    } else {
-                        // Limpiar el mensaje existente si la pregunta no existe
-                        if (mensajeExistente) {
-                            mensajeExistente.style.display = 'none';
-                        }
-                    }
-                });
+                if (!regex.test(valor) || valor === '') {
+                    mostrarMensajeError(mensaje, mensajeError);
+                    campo.classList.add('is-invalid');
+                } else {
+                    ocultarMensajeError(mensaje);
+                    campo.classList.remove('is-invalid');
+                }
             });
         }
 
-        function verificarPreguntaExistente(pregunta, callback) {
-            // Realizar una solicitud AJAX al servidor para verificar la existencia de la pregunta
-            // Reemplaza la URL con la ruta correcta en tu servidor
-            var url = '/verificarPregunta?pregunta=' + encodeURIComponent(pregunta);
-            var xhr = new XMLHttpRequest();
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var respuesta = JSON.parse(xhr.responseText);
-                        callback(respuesta.existe);
-                    }
-                }
-            };
-
-            xhr.open('GET', url, true);
-            xhr.send();
-        }
-
-        function mostrarMensajePreguntaExistente() {
-            var preguntaInput = document.getElementById('pregunta');
-            var mensajeExistente = document.getElementById('mensajeExistente');
-
-            // Crear el mensaje de pregunta ya existente si no existe
-            if (!mensajeExistente) {
-                mensajeExistente = document.createElement('div');
-                mensajeExistente.id = 'mensajeExistente';
-                mensajeExistente.className = 'alert alert-danger mt-2';
-                mensajeExistente.textContent = 'Pregunta ya existe';
-                preguntaInput.parentNode.appendChild(mensajeExistente);
+        function mostrarMensajeError(elemento, mensaje) {
+            if (elemento) {
+                elemento.textContent = mensaje;
+                elemento.style.display = 'block';
             }
-
-            // Mostrar el mensaje de pregunta ya existente
-            mensajeExistente.style.display = 'block';
-
-            // Ocultar el mensaje después de unos segundos (opcional)
-            setTimeout(function () {
-                mensajeExistente.style.display = 'none';
-            }, 3000);
         }
+
+        function ocultarMensajeError(elemento) {
+            if (elemento) {
+                elemento.style.display = 'none';
+            }
+        }
+
         verificarPreguntaEnTiempoReal();
+
         function guardarPregunta() {
             var pregunta = document.getElementById('pregunta').value;
             var respuesta = document.getElementById('respuesta').value;
@@ -185,8 +164,22 @@
                 document.body.appendChild(form);
                 form.submit();
         }
-    </script>
 
+        function mostrarNotificacionError(mensaje) {
+            // Muestra una notificación de error utilizando las clases de Bootstrap
+            var notificacion = document.createElement('div');
+            notificacion.className = 'alert alert-danger mt-2';
+            notificacion.textContent = mensaje;
+
+            var contenedorFormulario = document.querySelector('.contenedorFormulario');
+            contenedorFormulario.appendChild(notificacion);
+
+            // Oculta la notificación después de unos segundos (opcional)
+            setTimeout(function () {
+                notificacion.style.display = 'none';
+            }, 3000);
+        }
+    </script>
 </body>
 
 </html>
