@@ -132,10 +132,10 @@ router.post('/addPregunta', (req, res) => {
   if (![respuesta].every(texto => typeof texto === 'string')) {
     res.status(404).redirect(`/error/nuevaPregunta/La respuesta no es de tipo texto`)
   }
-  if (respuesta.length()<50) {
+  if (respuesta.length<50) {
     res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
   }
-  if (respuesta.length()>50) {
+  if (respuesta.length>450) {
     res.status(404).redirect(`/error/nuevaPregunta/La respuesta tiene que tener longitud entre 50 y 500 carcateres`)
   }
   if (![tema].every(texto => typeof texto === 'string')) {
