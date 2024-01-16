@@ -116,7 +116,9 @@ router.get('/searchPreguntas', (req, res) => {
 router.post('/addComentario/:id', (req, res) => {
   const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
-  preguntasService.agregarComentario(id, ComentarioNuevo);
+  if(ComentarioNuevo){
+    preguntasService.agregarComentario(id, ComentarioNuevo);
+  }
   res.redirect(`/detalle/${id}`)
 });
 
