@@ -22,33 +22,36 @@
     <div class="container mt-4">
         <div class="row justify-content-center m-0 p-0">
             <div class="col-md-4 text-center mb-4 h-auto w-auto">
-                <a href="/" class="btn btn-primary btn-sm d-flex align-items-center  h-auto w-auto">
+                <a href="/" class="btn btn-primary btn-sm d-flex align-items-center h-auto w-auto">
                     <img src="images/home.png" alt="Home Icon" class="img-fluid" style="width: 25px; height: 25px;">
                     <h1 class="ms-2 fs-4 m-0">Ver todas</h1>
                 </a>
             </div>
             <div class="col-md-4 text-center mb-4 h-auto w-auto">
-                <a href="/crearFlashcard" class="btn btn-primary btn-sm d-flex align-items-center  h-auto w-auto">
+                <a href="/crearFlashcard" class="btn btn-primary btn-sm d-flex align-items-center h-auto w-auto">
                     <img src="images/add.png" alt="Add Icon" class="img-fluid" style="width: 25px; height: 25px;">
                     <h1 class="ms-2 fs-4 m-0">Crear Flashcard</h1>
                 </a>
             </div>
             <div class="col-md-4 text-center mb-4 h-auto w-auto" id="loadMore">
-                <a class="btn btn-primary btn-sm d-flex align-items-center  h-auto w-auto">
+                <a class="btn btn-primary btn-sm d-flex align-items-center h-auto w-auto">
                     <h1 class="ms-2 fs-4 m-0">Cargar más</h1>
                 </a>
             </div>
-            <!-- Barra de búsqueda -->
-            <div class="input-group col-md-4 text-center mb-4 d-flex align-items-center  h-auto w-auto">
-                <input type="text" class="form-control btn-sm d-flex align-items-center" placeholder="Buscar preguntas..." id="searchInput">
-                <button class="btn btn-outline-primary" style="color: white;" type="button" id="searchButton">Buscar</button>
-            </div>
-            <div class="input-group col-md-4 text-center mb-4 d-flex align-items-center  h-auto w-auto">
+        </div>
+        <!-- Barra de búsqueda y Filtro por temas -->
+        <div class="row justify-content-center m-0 p-0">
+            <div class="input-group col-md-4 text-center mb-4 d-flex align-items-center h-auto w-auto">
                 <h1 class="ms-2 fs-4 m-0" style="color: white; border: 1px solid white; padding: 5px;">Filtrar por temas</h1>
                 <select id="filtrarTemas" name="preguntas" style="margin-left: 10px; margin-right: 10px;"></select>
             </div>
+            <div class="input-group col-md-4 text-center mb-4 d-flex align-items-center h-auto w-auto">
+                <input type="text" class="form-control btn-sm d-flex align-items-center" placeholder="Buscar preguntas..." id="searchInput">
+                <button class="btn btn-outline-primary" style="color: white;" type="button" id="searchButton">Buscar</button>
+            </div>
         </div>
     </div>
+    
 
     <section class="container mt-4" style="background-color: #FFAF9D !important;">
         <div class="btn-group d-flex flex-wrap justify-content-center">
