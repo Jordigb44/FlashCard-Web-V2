@@ -20,16 +20,15 @@
         <div class="contenedorFormulario text-center">
             <h2>Pregunta: </h2>
             <form class="formulario needs-validation" novalidate>
-                <textarea id="pregunta" name="pregunta" rows="4" cols="50" class="form-control is-invalid text-center" required></textarea>
-                <div id="mensajePregunta" class="invalid-feedback">El campo de pregunta no puede estar vacío.</div>
-                <div id="mensajePregunta" class="invalid-feedback">La pregunta debe comenzar con una letra mayúscula.</div>
+                <textarea id="pregunta" name="pregunta" rows="4" cols="50" class="form-control text-center" required></textarea>
+                <div id="mensajePregunta" class="invalid-feedback">El campo de pregunta no puede estar vacío y la pregunta debe comenzar con una letra mayúscula.</div>
             </form>
         </div>
 
         <div class="contenedorFormulario text-center">
             <h2>Respuesta: </h2>
             <form class="formulario needs-validation" novalidate>
-                <textarea id="respuesta" name="respuesta" rows="4" cols="50" class="form-control is-invalid text-center" required></textarea>
+                <textarea id="respuesta" name="respuesta" rows="4" cols="50" class="form-control text-center" required></textarea>
                 <div id="mensajeRespuesta" class="invalid-feedback">El campo de respuesta no puede estar vacío.</div>
             </form>
         </div>
@@ -90,10 +89,27 @@
     <script>
 
         function verificarPreguntaEnTiempoReal() {
-            verificarCampoEnTiempoReal('pregunta', /^.+$/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
+            verificarCampoEnTiempoReal('pregunta', /^[A-Z]{1,}/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
             verificarCampoEnTiempoReal('respuesta', /^.{50,450}$/, 'mensajeRespuesta', 'La respuesta debe tener entre 50 y 450 caracteres.');
             verificarCampoEnTiempoReal('imagenPregunta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenPregunta', 'URL de imagen de pregunta no válida.');
             verificarCampoEnTiempoReal('imagenRespuesta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenRespuesta', 'URL de imagen de respuesta no válida.');
+        }
+
+        function verificarCampoEnTiempoReaPreguntal(campoId, regex, mensajeId, mensajeError) {
+            var campo = document.getElementById(campoId);
+            var mensaje = document.getElementById(mensajeId);
+
+            campo.addEventListener('input', function () {
+                var valor = campo.value.trim();
+
+                if (!regex.test(valor) || valor === '') {
+                    mostrarMensajeError(mensaje, mensajeError);
+                    campo.classList.add('is-invalid');
+                } else {
+                    ocultarMensajeError(mensaje);
+                    campo.classList.remove('is-invalid');
+                }
+            });
         }
 
         function verificarCampoEnTiempoReal(campoId, regex, mensajeId, mensajeError) {
