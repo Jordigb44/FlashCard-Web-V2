@@ -22,7 +22,6 @@
             <form class="formulario needs-validation" novalidate>
                 <textarea id="pregunta" name="pregunta" rows="4" cols="50" class="form-control is-invalid text-center" required></textarea>
                 <div id="mensajePregunta" class="invalid-feedback">El campo de pregunta no puede estar vacío.</div>
-                
             </form>
         </div>
 
@@ -89,26 +88,23 @@
 
     <script>
 
-        function verificarPreguntaEnTiempoReal() {
-            verificarCampoEnTiempoReal('pregunta', /^[A-Z]/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
-            verificarCampoEnTiempoReal('respuesta', /^.{50,450}$/, 'mensajeRespuesta', 'La respuesta debe tener entre 50 y 450 caracteres.');
-            verificarCampoEnTiempoReal('imagenPregunta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenPregunta', 'URL de imagen de pregunta no válida.');
-            verificarCampoEnTiempoReal('imagenRespuesta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenRespuesta', 'URL de imagen de respuesta no válida.');
-        }
-
         function verificarCampoEnTiempoReal(campoId, regex, mensajeId, mensajeError) {
             var campo = document.getElementById(campoId);
             var mensaje = document.getElementById(mensajeId);
 
             campo.addEventListener('input', function () {
                 var valor = campo.value.trim();
-
-                if (!regex.test(valor) || valor === '') {
-                    mostrarMensajeError(mensaje, mensajeError);
-                    campo.classList.add('is-invalid');
+                if (verificacionInicialPregunta || verificacionInicialRespuesta) {
+                    if (!regex.test(valor) || valor === '' ) {
+                        mostrarMensajeError(mensaje, mensajeError);
+                        campo.classList.add('is-invalid');
+                    } else {
+                        ocultarMensajeError(mensaje);
+                        campo.classList.remove('is-invalid');
+                    }
                 } else {
-                    ocultarMensajeError(mensaje);
-                    campo.classList.remove('is-invalid');
+                    verificacionInicialPregunta = true;
+                    verificacionInicialRespuesta = true;
                 }
             });
         }
@@ -126,7 +122,28 @@
             }
         }
 
-        verificarPreguntaEnTiempoReal();
+        // Esperar a que se cargue la página
+        document.addEventListener("DOMContentLoaded", function() {
+            var verificacionInicialPregunta = false; // Bandera para la verificación inicial
+            var verificacionInicialRespuesta = false; // Bandera para la verificación inicial
+            // Verificar la pregunta cuando se introduce un carácter
+            document.getElementById('pregunta').addEventListener('input', function() {
+                verificacionInicialPregunta = true;
+                verificarCampoEnTiempoReal('pregunta', /^.+$/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
+            });
+
+            document.getElementById('respuesta').addEventListener('input', function() {
+                verificacionInicialRespuesta = true;
+                verificarCampoEnTiempoReal('respuesta', /^.{50,450}$/, 'mensajeRespuesta', 'La respuesta debe tener entre 50 y 450 caracteres.');
+            });
+            
+            document.getElementById('imagenPregunta').addEventListener('input', function() {
+                verificarCampoEnTiempoReal('imagenPregunta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeRespuesta', 'URL de imagen de pregunta no válida.');
+            });
+            document.getElementById('imagenRespuesta').addEventListener('input', function() {
+                verificarCampoEnTiempoReal('imagenRespuesta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeRespuesta', 'URL de imagen de respuesta no válida.');
+            });
+        });
 
         function guardarPregunta() {
             var pregunta = document.getElementById('pregunta').value;
