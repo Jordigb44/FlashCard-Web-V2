@@ -66,14 +66,6 @@
                 <input type="radio" id="alta" name="dificultad" value="alta" required>
                 <label class="form-check-label" for="alta">Alta</label>
             </form>
-
-            <div id="formulario-container" class="text-center">
-                <form action="/addComentario" method="post" id="miFormulario" class="needs-validation" novalidate>
-                    <label for="comentario">Comentario:</label>
-                    <input name="ComentarioNuevo" type="text" id="comentario" class="form-control text-center" required>
-                    <div class="invalid-feedback">El comentario no puede estar vacío.</div>
-                </form>
-            </div>
         </div>
     </div>
 
@@ -139,7 +131,6 @@
             var imagenRespuesta = document.getElementById('imagenRespuesta').value;
             var tema = document.getElementById('temaRespuesta').value;
             var dificultad = document.querySelector('input[name="dificultad"]').value;
-            var comentarios = document.getElementById('comentario').value;
             // Crear un formulario dinámico para enviar los datos al servidor
             var form = document.createElement('form');
                 form.action = '/addPregunta';  // Reemplaza con la URL correcta
@@ -153,7 +144,6 @@
                     imagenRespuesta: imagenRespuesta,
                     tema: tema.toString(),
                     dificultad: dificultad,
-                    comentarios: comentarios
                 };
 
                 for (var key in campos) {
