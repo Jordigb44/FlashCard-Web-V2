@@ -69,47 +69,37 @@
                     </div>
                     <div class="item_pregunta w-auto h-auto align-content-md-center m-2 pt-4"
                         style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
-                        <h1 class="h-auto w-auto text-center mb-0">COMENTARIOS: </h1>
-                        <div id="formulario-container" class="d-flex flex-row justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3" style="background-color: #FFAF9D; padding: 15px;">
-                            <form id="miFormulario">
-                                <div class="contenedorFormulario text-center">
-                                    <h2>Relevancia (1-5 estrellas): </h2>
-                                    <form class="formulario needs-validation" novalidate>
+                            <h1 class="h-auto w-auto text-center mb-0">COMENTARIOS: </h1>
+                            <div id="formulario-container" class="d-flex flex-row justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3" style="background-color: #FFAF9D; padding: 15px;">
+                                <form id="miFormulario">
+                                    <div class="contenedorFormulario text-center" style="display: inline-flex;">
+                                        <label for="relevancia_i" style="padding-right: 10px;">Relevancia (1-5 estrellas): </label>
                                         <input name="RelevanciaNuevo" type="number" id="relevancia_i" min="1" max="5" required>
                                         <div id="mensajeRelevancia" class="invalid-feedback">El campo de relevancia tiene que valer entre 1 y 5.</div>
-                                    </form>
-                                </div>
-                                <div class="contenedorFormulario text-center">
-                                    <h2>Usuario: </h2>
-                                    <form class="formulario needs-validation" novalidate>
+                                    </div>
+                                    <div class="contenedorFormulario text-center" style="display: inline-flex;">
+                                        <label for="usuario_i" style="padding-left: 10px; padding-right: 10px;">Usuario: </label>
                                         <input name="UsuarioNuevo" type="text" id="usuario_i" required>
-                                        <div id="mensajeUsuario" class="invalid-feedback">El campo de usuario no puede estar vacio.</div>
-                                    </form>
-                                </div>
-                                <div class="contenedorFormulario text-center">
-                                    <h2>Comentario: </h2>
-                                    <form class="formulario needs-validation" novalidate>
+                                        <div id="mensajeUsuario" class="invalid-feedback">El campo de usuario no puede estar vacío.</div>
+                                    </div>
+                                    <div class="contenedorFormulario text-center" style="display: inline-flex;">
+                                        <label for="comentario_i" style="padding-left: 10px; padding-right: 10px;">Comentario: </label>
                                         <input name="ComentarioNuevo" type="text" id="comentario_i" required>
-                                        <div id="mensajeComentarioNUevo" class="invalid-feedback">El campo de comentario no puede estar vacio.</div>
-                                    </form>
-                                </div>
-
-                                <input type="button" value="Agregar Comentario" onclick="agregarNuevoComentario()">
-                            </form>
-                            
+                                        <div id="mensajeComentarioNUevo" class="invalid-feedback">El campo de comentario no puede estar vacío.</div>
+                                    </div>
+                        
+                                    <input type="button" value="Agregar Comentario" onclick="agregarNuevoComentario()">
+                                </form>
+                            </div>
+                            <div id="comentarios-container" class="d-flex flex-column justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3">
+                                <!-- Container para comentarios -->
+                            </div>
+                            <a href="/respuesta/{{id}}" class="btn btn-primary btn-sm d-flex justify-content-center align-items-center align-content-center h-auto w-30% mx-auto" style="background-color: #FFAF9D ;color: white; font-size: 16px; border-color: #FFAF9D; width: fit-content; border-radius: 10%; margin-bottom: 20px;">
+                                <img src="/images/add.png" alt="Add Icon" class="img-fluid" style="width: 25px; height: 25px;">
+                                <h1 class="ms-2 fs-9 m-0" style="text-align: center;">Respuesta</h1>
+                            </a>
                         </div>
-                        <div id="comentarios-container"
-                            class="d-flex flex-column justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3">
-                            <!-- Container para comentarios -->
-                        </div>
-                        <a href="/respuesta/{{id}}"
-                            class="btn btn-primary btn-sm d-flex justify-content-center align-items-center align-content-center h-auto w-30% mx-auto"
-                            style="background-color: #FFAF9D ;color: white; font-size: 16px; border-color: #FFAF9D; width: fit-content; border-radius: 10%; margin-bottom: 20px;">
-                            <img src="/images/add.png" alt="Add Icon" class="img-fluid"
-                                style="width: 25px; height: 25px;">
-                            <h1 class="ms-2 fs-9 m-0" style="text-align: center;">Respuesta</h1>
-                        </a>
-                    </div>
+                        
                 </div>
             </div>
         </div>
@@ -122,9 +112,9 @@
             var idPregunta = obtenerIdDeURL();
 
             // Obtener el valor del comentario desde el input
-            var nuevoComentario = document.getElementById('comentario').value;
-            var nuevoComentarioScore = document.getElementById('relevancia').value;
-            var nuevoComentarioUsuario = document.getElementById('usuario').value;
+            var nuevoComentario = document.getElementById('comentario_i').value;
+            var nuevoComentarioScore = document.getElementById('relevancia_i').value;
+            var nuevoComentarioUsuario = document.getElementById('usuario_i').value;
 
             // Realizar la petición Ajax para agregar el comentario al servidor
             if(nuevoComentario != ""){
@@ -133,14 +123,13 @@
                     type: 'post',
                     data: { ComentarioNuevo: nuevoComentario, nuevoComentarioScore: nuevoComentarioScore,  nuevoComentarioUsuario: nuevoComentarioUsuario},
                     success: function(data) {
-                        console.log(data)
                         // Después de agregar el comentario con éxito, actualizar los comentarios
                         var comentariosContainer = document.getElementById('comentarios-container');
                         var comentarioElemento = crearComentario(idPregunta, nuevoComentario, nuevoComentarioScore, nuevoComentarioUsuario);
                         comentariosContainer.appendChild(comentarioElemento);
 
                         // Limpiar el campo de entrada
-                        document.getElementById('comentario').value = '';
+                        document.getElementById('comentario_i').value = '';
                     },
                     error: function(error) {
                         res.status(404).redirect(`/error/addComentario/No se pudo agregar el nuevo comentario`)
