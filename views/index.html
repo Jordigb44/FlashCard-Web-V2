@@ -96,6 +96,7 @@
             // Función para realizar la búsqueda
             function searchPreguntas() {
                 var searchTerm = $('#searchInput').val();
+                console.log(searchTerm)
                 $.ajax({
                     url: '/searchPreguntas',
                     type: 'GET',
