@@ -54,6 +54,19 @@ router.get('/getPreguntasPorTema', (req, res) => {
   }
 });
 
+router.get('/getComentariosPorId', (req, res) => {
+  try {
+    const id = req.query.id;
+    
+    // Filtra las preguntas por el tema proporcionado
+    const preguntasFiltradas = Array.from(preguntasService.getPreguntas().values())
+    .filter(pregunta => pregunta.id == id);
+    // Devuelve las preguntas filtradas como JSON
+    res.json({ comentarios: preguntasFiltradas[0].comentarios });
+  } catch (error) {
+    res.status(404).redirect(`/error/obetenerPregunta/Error al obtener los comentarios`)
+  }
+});
 
 router.get('/detalle/:id', (req, res) => {
   const id = parseInt(req.params.id);
