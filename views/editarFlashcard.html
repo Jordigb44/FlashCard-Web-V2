@@ -60,13 +60,7 @@
                 <label for="alta">Alta</label>
             </form>
 
-            <div id="formulario-container">
-                <form action="/addComentario/{{id}}" method="post" id="miFormulario">
-                    <label for="comentario">Comentario:</label>
-                    <input name="ComentarioNuevo" type="text" id="comentario" required>
-                    <input type="submit" value="Agregar Comentario">
-                </form>
-            </div>
+    
         </div>
     </div>
 
@@ -170,7 +164,6 @@
             var imagenRespuesta = document.getElementById('imagenRespuesta').value;
             var tema =document.getElementById('temaRespuesta').value;; // Obtén el valor del tema según tu lógica
             var dificultad = document.querySelector('input[name="dificultad"]').value;
-            var comentarios = document.getElementById('comentario').value;
 
             // Crear un formulario dinámico para enviar los datos al servidor
             var form = document.createElement('form');
@@ -185,7 +178,6 @@
                 imagenRespuesta: imagenRespuesta,
                 tema: tema.toString(),
                 dificultad: dificultad,
-                comentarios: comentarios
             };
 
             for (var key in campos) {
