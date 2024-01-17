@@ -79,12 +79,55 @@
     </div>
 
     <script>
-
+        var old_pregunta = document.getElementById('pregunta').value
         function verificarPreguntaEnTiempoReal() {
             verificarCampoEnTiempoReal('pregunta', /^¿|[A-Z]/, 'mensajePregunta', 'La pregunta debe comenzar con una letra mayúscula.');
             verificarCampoEnTiempoReal('respuesta', /^.{50,450}$/, 'mensajeRespuesta', 'La respuesta debe tener entre 50 y 450 caracteres.');
             verificarCampoEnTiempoReal('imagenPregunta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenPregunta', 'URL de imagen de pregunta no válida.');
             verificarCampoEnTiempoReal('imagenRespuesta', /^(ftp|http|https):\/\/[^ "]+$/, 'mensajeImagenRespuesta', 'URL de imagen de respuesta no válida.');
+
+            var preguntaInput = document.getElementById('pregunta');
+            var mensajeExistente = document.getElementById('mensajePregunta');
+
+            // Limpiar el mensaje existente al empezar a escribir
+            if (mensajeExistente) {
+                mensajeExistente.style.display = 'none';
+            }
+
+            preguntaInput.addEventListener('input', function () {
+                var pregunta = preguntaInput.value;
+
+                // Verificar si la pregunta ya existe en el servidor
+                verificarPreguntaExistente(pregunta, function (existe) {
+                    if (existe && pregunta !== old_pregunta) {
+                        // Mostrar mensaje de pregunta ya existente
+                        mostrarMensajeError(mensajeExistente, 'Pregunta ya existe');
+                        preguntaInput.classList.add('is-invalid');
+                    } else {
+                        // ocultarMensajeError(mensajeExistente);
+                        preguntaInput.classList.remove('is-invalid');
+                    }
+                });
+            });
+        }
+
+        function verificarPreguntaExistente(pregunta, callback) {
+            // Realizar una solicitud AJAX al servidor para verificar la existencia de la pregunta
+            // Reemplaza la URL con la ruta correcta en tu servidor
+            var url = '/verificarPregunta?pregunta=' + encodeURIComponent(pregunta);
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var respuesta = JSON.parse(xhr.responseText);
+                        callback(respuesta.existe);
+                    }
+                }
+            };
+
+            xhr.open('GET', url, true);
+            xhr.send();
         }
 
         function verificarCampoEnTiempoReal(campoId, regex, mensajeId, mensajeError) {
@@ -108,6 +151,25 @@
                 }
             });
         }
+        function mostrarMensajePreguntaExistente() {
+            var preguntaInput = document.getElementById('pregunta');
+            var mensajeExistente = document.getElementById('mensajeExistente');
+
+            // Crear el mensaje de pregunta ya existente si no existe
+            if (!mensajeExistente) {
+                mensajeExistente = document.createElement('div');
+                mensajeExistente.id = 'mensajeExistente';
+                mensajeExistente.className = 'alert alert-danger mt-2';
+                mensajeExistente.textContent = 'Pregunta ya existe';
+                preguntaInput.parentNode.appendChild(mensajeExistente);
+            }
+
+
+            // Ocultar el mensaje después de unos segundos (opcional)
+            setTimeout(function () {
+                mensajeExistente.style.display = 'none';
+            }, 3000);
+        }
 
         function mostrarMensajeError(elemento, mensaje) {
             if (elemento) {
@@ -121,7 +183,6 @@
                 elemento.style.display = 'none';
             }
         }
-
         verificarPreguntaEnTiempoReal();
 
         function guardarPregunta() {
