@@ -97,7 +97,7 @@
 
         function verificarPreguntaEnTiempoReal() {
             var preguntaInput = document.getElementById('pregunta');
-            var mensajeExistente = document.getElementById('mensajeExistente');
+            var mensajeExistente = document.getElementById('mensajePregunta');
 
             // Limpiar el mensaje existente al empezar a escribir
             if (mensajeExistente) {
@@ -111,12 +111,11 @@
                 verificarPreguntaExistente(pregunta, function (existe) {
                     if (existe && pregunta !== old_pregunta) {
                         // Mostrar mensaje de pregunta ya existente
-                        mostrarMensajePreguntaExistente();
+                        mostrarMensajeError(mensajeExistente, 'Pregunta ya existe');
+                        preguntaInput.classList.add('is-invalid');
                     } else {
-                        // Limpiar el mensaje existente si la pregunta no existe
-                        if (mensajeExistente) {
-                            mensajeExistente.style.display = 'none';
-                        }
+                        // ocultarMensajeError(mensajeExistente);
+                        preguntaInput.classList.remove('is-invalid');
                     }
                 });
             });
@@ -176,8 +175,6 @@
                 preguntaInput.parentNode.appendChild(mensajeExistente);
             }
 
-            // Mostrar el mensaje de pregunta ya existente
-            mensajeExistente.style.display = 'block';
 
             // Ocultar el mensaje después de unos segundos (opcional)
             setTimeout(function () {
