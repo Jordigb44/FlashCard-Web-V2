@@ -117,7 +117,7 @@
             var nuevoComentarioUsuario = document.getElementById('usuario_i').value;
 
             // Realizar la petición Ajax para agregar el comentario al servidor
-            if(nuevoComentario != ""){
+            if(nuevoComentario != "" && nuevoComentarioScore != "" && nuevoComentarioUsuario != "" && nuevoComentarioScore >= 1 && nuevoComentarioScore <= 5){
                 $.ajax({
                     url: '/addComentario/' + idPregunta,
                     type: 'post',
@@ -296,7 +296,7 @@
             }
         }
 
-        verificarCampoEnTiempoReal('relevancia_i', /^[1-5]{1}/, 'mensajeRelevancia', 'La pregunta debe comenzar con una letra mayúscula.');
+        verificarCampoEnTiempoReal('relevancia_i', /^[1-5]{1}/, 'mensajeRelevancia', 'La relevancia tiene que ser entre 1 y 5 (ambos incluidos).');
         verificarCampoEnTiempoReal('usuario_i', /^.{1,50}/, 'mensajeUsuario', 'La pregunta debe comenzar con una letra mayúscula.');
         verificarCampoEnTiempoReal('comentario_i', /^.{1,250}/, 'mensajeComentarioNuevo', 'La respuesta debe comenzar con una letra mayúscula.');
         // Obtener el ID de la URL
