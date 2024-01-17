@@ -70,16 +70,16 @@
                     <div class="item_pregunta w-auto h-auto align-content-md-center m-2 pt-4"
                         style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                         <h1 class="h-auto w-auto text-center mb-0">COMENTARIOS: </h1>
+                        <div id="formulario-container" class="d-flex flex-column justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3">
+                            <form id="miFormulario">
+                                <label for="comentario">Comentario:</label>
+                                <input name="ComentarioNuevo" type="text" id="comentario" required>
+                                <input type="button" value="Agregar Comentario" onclick="agregarNuevoComentario()">
+                            </form>
+                        </div>
                         <div id="comentarios-container"
                             class="d-flex flex-column justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3">
                             <!-- Container para comentarios -->
-                        </div>
-                        <div id="formulario-container">
-                            <form action="/addComentario/{{id}}" method="post" id="miFormulario">
-                                <label for="comentario">Comentario:</label>
-                                <input name="ComentarioNuevo" type="text" id="comentario" required>
-                                <input type="submit" value="Agregar Comentario">
-                            </form>
                         </div>
                         <a href="/respuesta/{{id}}"
                             class="btn btn-primary btn-sm d-flex justify-content-center align-items-center align-content-center h-auto w-30% mx-auto"
@@ -96,6 +96,35 @@
     </section>
 
     <script>
+        function agregarNuevoComentario() {
+            // Obtener el ID de la pregunta (puedes modificar esto según tu implementación)
+            var idPregunta = obtenerIdDeURL();
+
+            // Obtener el valor del comentario desde el input
+            var nuevoComentario = document.getElementById('comentario').value;
+
+            // Realizar la petición Ajax para agregar el comentario al servidor
+            if(nuevoComentario != ""){
+                $.ajax({
+                    url: '/addComentario/' + idPregunta,
+                    type: 'post',
+                    data: { ComentarioNuevo: nuevoComentario },
+                    success: function() {
+                        // Después de agregar el comentario con éxito, actualizar los comentarios
+                        var comentariosContainer = document.getElementById('comentarios-container');
+                        var comentarioElemento = crearComentario(idPregunta, nuevoComentario);
+                        comentariosContainer.appendChild(comentarioElemento);
+
+                        // Limpiar el campo de entrada
+                        document.getElementById('comentario').value = '';
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            }
+        }
+
         function guardarEditComentario() {
             var id = id;
             var comentarios = document.getElementById('comentario').value;
