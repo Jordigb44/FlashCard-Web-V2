@@ -129,6 +129,8 @@
                         comentariosContainer.appendChild(comentarioElemento);
 
                         // Limpiar el campo de entrada
+                        document.getElementById('relevancia_i').value = '';
+                        document.getElementById('usuario_i').value = '';
                         document.getElementById('comentario_i').value = '';
                     },
                     error: function(error) {
@@ -171,25 +173,25 @@
             div.className = 'd-flex flex-row justify-content-center align-items-center align-content-center text-center mb-2';
 
             // Texto del comentario
-            var h3 = document.createElement('h3');
-            h3.className = 'fs-1 mb-0 text-break';
+            var relevancia_h3 = document.createElement('h3');
+            relevancia_h3.className = 'fs-1 mb-0 text-break';
             // Establecer estilos condicionales para el fondo
             if (relevancia === '3' || relevancia === '4' || relevancia === '5') {
-                h3.style = 'border: 1px solid black; border-radius: 10px; padding: 4px; margin-right: 10px; background-color: green;';
+                relevancia_h3.style = 'border: 1px solid black; border-radius: 10px; padding: 4px; margin-right: 10px; background-color: green;';
             } else {
-                h3.style = 'border: 1px solid black; border-radius: 10px; padding: 4px; margin-right: 10px; background-color: red;';
+                relevancia_h3.style = 'border: 1px solid black; border-radius: 10px; padding: 4px; margin-right: 10px; background-color: red;';
             }
-            h3.textContent = relevancia;
-            div.appendChild(h3);
-            var h4 = document.createElement('h4');
-            h4.className = 'text-start fw-bold fs-italic mb-0';
-            h4.style = 'padding: 4px; margin-right: 10px'
-            h4.textContent = usuario + ': ';
-            div.appendChild(h4);
-            var h3 = document.createElement('h3');
-            h3.className = 'text-center pe-5 fs-1 mb-0 text-break';
-            h3.textContent = comentario;
-            div.appendChild(h3);
+            relevancia_h3.textContent = relevancia;
+            div.appendChild(relevancia_h3);
+            var usuario_h4 = document.createElement('h4');
+            usuario_h4.className = 'text-start fw-bold fs-italic mb-0';
+            usuario_h4.style = 'padding: 4px; margin-right: 10px'
+            usuario_h4.textContent = usuario + ': ';
+            div.appendChild(usuario_h4);
+            var comentario_h3 = document.createElement('h3');
+            comentario_h3.className = 'text-center pe-5 fs-1 mb-0 text-break';
+            comentario_h3.textContent = comentario;
+            div.appendChild(comentario_h3);
 
             // Botón de -
             var imgMenos = document.createElement('img');
