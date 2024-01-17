@@ -80,7 +80,7 @@
                         skip += limit;
                     },
                     error: function(error) {
-                        console.log(error);
+                        res.status(404).redirect(`/error/getPreguntas/No se pudo obtener las preguntas`)
                     }
                 });
             }
