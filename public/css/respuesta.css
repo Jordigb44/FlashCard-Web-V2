@@ -1,7 +1,7 @@
 /* Estilos generales */
 @font-face {
     font-family: 'Montserrat-Ace-Medium';
-    src: url('/fonts/Montserrat-Ace-Medium.otf');
+    src: url('../fonts/Montserrat-Ace-Medium.otf');
 }
 
 *{
