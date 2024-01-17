@@ -125,14 +125,25 @@ router.get('/verificarPregunta', (req, res) => {
 
 // Ruta para realizar la búsqueda de preguntas
 router.get('/searchPreguntas', (req, res) => {
-  const searchTerm = req.query.searchTerm;
+  try{
+    const searchTerm = req.query.searchTerm;
 
-  // Realizar la búsqueda utilizando tu servicio de preguntas
-  const preguntasEncontradas = Array.from(preguntasService.getPreguntas().values())
-  .filter(pregunta => pregunta.pregunta.toLowerCase().includes(searchTerm.toLowerCase()));
+    // Realizar la búsqueda utilizando tu servicio de preguntas
+    if (!searchTerm){
+        const data = {
+          preguntas: preguntasService.getPreguntas().slice(0, 5),
+        };
+        res.json(data);
+    } else {
+        const preguntasEncontradas = Array.from(preguntasService.getPreguntas().values())
+        .filter(pregunta => pregunta.pregunta.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  // Enviar los resultados como respuesta JSON
-  res.json({ preguntas: preguntasEncontradas });
+        // Enviar los resultados como respuesta JSON
+        res.json({ preguntas: preguntasEncontradas });
+    }
+  } catch (error) {
+    res.status(404).redirect(`/error/searchPreguntas/Error al buscar termino`)
+  }
 });
 
 router.post('/addComentario/:id', (req, res) => {
