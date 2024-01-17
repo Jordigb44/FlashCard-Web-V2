@@ -190,6 +190,9 @@
                     dataType: 'json',
                     success: function(data) {
                         data.comentarios.forEach(function(comentario) {
+                            if (comentario == null) {
+                                return;
+                            }
                             var comentarioElemento = crearComentario(idPregunta, comentario);
                             comentariosContainer.appendChild(comentarioElemento);
                         });
