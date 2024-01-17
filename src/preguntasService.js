@@ -34,13 +34,17 @@ const preguntasService = {
     return preguntas.delete(id);
   },
 
-  agregarComentario: (id, nuevoComentario) => {
+  agregarComentario: (id, nuevoComentario, ComentarioNuevoRelevancia, ComentarioNuevoUsuario) => {
     const pregunta = preguntas.get(id);
 
     // Verifica si la pregunta existe
     if (pregunta) {
         // Agrega el nuevo comentario a la lista de comentarios de la pregunta
-        pregunta.comentarios.push(nuevoComentario);
+        const comentario_crear = []
+        comentario_crear.push(nuevoComentario)
+        comentario_crear.push(ComentarioNuevoRelevancia)
+        comentario_crear.push(ComentarioNuevoUsuario)
+        pregunta.comentarios.push(comentario_crear);
     } else {
         res.status(404).redirect(`/error/AgregarComentario/No se pudo agregar el comentario`)
     }
@@ -82,7 +86,7 @@ const preguntasService = {
 
 export default preguntasService;
 
-preguntasService.addPregunta({imagen_pregunta_url: "https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200638/196354278-달에-앉아-우주-비행사의-만화-이미지-고품질-일러스트레이션.jpg", imagen_respuesta_url: "https://formacionparaformadores.com/wp-content/uploads/2015/01/Ser-Formador-preguntas-y-re-630x315.jpg", pregunta: "¿Cuanto es 2+2?", respuesta: "Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemploaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", tema: "3", dificultad: "baja", comentarios: ["Prueba1", "Prueba2"] })
+preguntasService.addPregunta({imagen_pregunta_url: "https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200638/196354278-달에-앉아-우주-비행사의-만화-이미지-고품질-일러스트레이션.jpg", imagen_respuesta_url: "https://formacionparaformadores.com/wp-content/uploads/2015/01/Ser-Formador-preguntas-y-re-630x315.jpg", pregunta: "¿Cuanto es 2+2?", respuesta: "Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemploaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", tema: "3", dificultad: "baja", comentarios: [["Prueba1", "1", "admin"], ["Prueba2", "1", "admin"]] })
 preguntasService.addPregunta({imagen_pregunta_url: "https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200638/196354278-달에-앉아-우주-비행사의-만화-이미지-고품질-일러스트레이션.jpg", imagen_respuesta_url: "https://formacionparaformadores.com/wp-content/uploads/2015/01/Ser-Formador-preguntas-y-re-630x315.jpg", pregunta: "¿Quien es el CEO de SpaceX?", respuesta: "Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemploaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", tema: "6", dificultad: "alta", comentarios: [] })
 preguntasService.addPregunta({imagen_pregunta_url: "https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200638/196354278-달에-앉아-우주-비행사의-만화-이미지-고품질-일러스트레이션.jpg", imagen_respuesta_url: "https://formacionparaformadores.com/wp-content/uploads/2015/01/Ser-Formador-preguntas-y-re-630x315.jpg", pregunta: "¿Cuanto es 2*2?", respuesta: "Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemploaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", tema: "9", dificultad: "media", comentarios: [] })
 preguntasService.addPregunta({imagen_pregunta_url: "https://previews.123rf.com/images/aprillrain/aprillrain2212/aprillrain221200638/196354278-달에-앉아-우주-비행사의-만화-이미지-고품질-일러스트레이션.jpg", imagen_respuesta_url: "https://formacionparaformadores.com/wp-content/uploads/2015/01/Ser-Formador-preguntas-y-re-630x315.jpg", pregunta: "¿Cuál es la capital de Francia?", respuesta: "Es un hecho establecido hace demasiado tiempo que un lector se distraerá con el contenido del texto de un sitio mientras que mira su diseño. El punto de usar Lorem Ipsum es que tiene una distribución más o menos normal de las letras, al contrario de usar textos como por ejemploaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", tema: "7", dificultad: "media", comentarios: [] })

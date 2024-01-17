@@ -149,8 +149,10 @@ router.get('/searchPreguntas', (req, res) => {
 router.post('/addComentario/:id', (req, res) => {
   const id = parseInt(req.params.id)
   const ComentarioNuevo = req.body.ComentarioNuevo;
+  const ComentarioNuevoRelevancia = req.body.nuevoComentarioScore;
+  const ComentarioNuevoUsuario = req.body.nuevoComentarioUsuario;
   if(ComentarioNuevo){
-    preguntasService.agregarComentario(id, ComentarioNuevo);
+    preguntasService.agregarComentario(id, ComentarioNuevo, ComentarioNuevoRelevancia, ComentarioNuevoUsuario);
   }
   res.redirect(`/detalle/${id}`)
 });
