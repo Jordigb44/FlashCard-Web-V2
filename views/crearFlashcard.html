@@ -191,7 +191,19 @@
             var imagenPregunta = document.getElementById('imagenPregunta').value;
             var imagenRespuesta = document.getElementById('imagenRespuesta').value;
             var tema = document.getElementById('temaRespuesta').value;
-            var dificultad = document.querySelector('input[name="dificultad"]').value;
+            
+            // Obtener el valor de la dificultad seleccionada
+            var dificultadSeleccionada;
+            var radioButtons = document.getElementsByName('dificultad');
+            for (var i = 0; i < radioButtons.length; i++) {
+                if (radioButtons[i].checked) {
+                    dificultadSeleccionada = radioButtons[i].value;
+                    break; // Salir del bucle una vez que se haya encontrado el radio button seleccionado
+                }
+            }
+
+            var dificultad = dificultadSeleccionada;
+            
             // Crear un formulario dinámico para enviar los datos al servidor
             var form = document.createElement('form');
                 form.action = '/addPregunta';  // Reemplaza con la URL correcta
