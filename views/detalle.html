@@ -166,6 +166,7 @@
 
         // Función para crear un comentario con botones + y -
         function crearComentario(id, comentario, relevancia, usuario) {
+            console.log(id, comentario, relevancia, usuario)
             var div = document.createElement('div');
             div.className = 'd-flex flex-row justify-content-center align-items-center align-content-center text-center mb-2';
 
@@ -184,7 +185,7 @@
             h4.className = 'text-start fw-bold fs-italic mb-0';
             h4.style = 'padding: 4px; margin-right: 10px'
             h4.textContent = usuario + ': ';
-            div.appendChild(h3);
+            div.appendChild(h4);
             var h3 = document.createElement('h3');
             h3.className = 'text-center pe-5 fs-1 mb-0 text-break';
             h3.textContent = comentario;
