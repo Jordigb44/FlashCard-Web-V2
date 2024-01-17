@@ -70,19 +70,29 @@
                     <div class="item_pregunta w-auto h-auto align-content-md-center m-2 pt-4"
                         style="word-wrap: break-word; overflow: hidden; text-overflow: ellipsis;">
                         <h1 class="h-auto w-auto text-center mb-0">COMENTARIOS: </h1>
-                        <div id="formulario-container" class="d-flex flex-column justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3">
-                            <form id="miFormulario" style="background-color: #FFAF9D; padding: 15px;">
-                                <label for="relevancia">Relevancia (1-5 estrellas):</label>
-                                <input name="RelevanciaNuevo" type="number" id="relevancia" min="1" max="5" required>
-                                <div id="mensajeRelevancia" class="invalid-feedback">El campo de relevancia tiene que valer entre 1 y 5.</div>
-                                
-                                <label for="usuario" style="padding-left: 10px;">Usuario:</label>
-                                <input name="UsuarioNuevo" type="text" id="usuario" required>
-                                <div id="mensajeUsuario" class="invalid-feedback">El campo de usuario no puede estar vacio.</div>
-                                
-                                <label for="comentario" style="padding-left: 10px;">Comentario:</label>
-                                <input name="ComentarioNuevo" type="text" id="comentario" required>
-                                <div id="mensajeComentarioNUevo" class="invalid-feedback">El campo de comentario no puede estar vacio.</div>
+                        <div id="formulario-container" class="d-flex flex-row justify-content-center align-items-center align-content-center text-white fw-bolder mt-0 pt-3" style="background-color: #FFAF9D; padding: 15px;">
+                            <form id="miFormulario">
+                                <div class="contenedorFormulario text-center">
+                                    <h2>Relevancia (1-5 estrellas): </h2>
+                                    <form class="formulario needs-validation" novalidate>
+                                        <input name="RelevanciaNuevo" type="number" id="relevancia_i" min="1" max="5" required>
+                                        <div id="mensajeRelevancia" class="invalid-feedback">El campo de relevancia tiene que valer entre 1 y 5.</div>
+                                    </form>
+                                </div>
+                                <div class="contenedorFormulario text-center">
+                                    <h2>Usuario: </h2>
+                                    <form class="formulario needs-validation" novalidate>
+                                        <input name="UsuarioNuevo" type="text" id="usuario_i" required>
+                                        <div id="mensajeUsuario" class="invalid-feedback">El campo de usuario no puede estar vacio.</div>
+                                    </form>
+                                </div>
+                                <div class="contenedorFormulario text-center">
+                                    <h2>Comentario: </h2>
+                                    <form class="formulario needs-validation" novalidate>
+                                        <input name="ComentarioNuevo" type="text" id="comentario_i" required>
+                                        <div id="mensajeComentarioNUevo" class="invalid-feedback">El campo de comentario no puede estar vacio.</div>
+                                    </form>
+                                </div>
 
                                 <input type="button" value="Agregar Comentario" onclick="agregarNuevoComentario()">
                             </form>
@@ -286,7 +296,7 @@
         function mostrarMensajeError(elemento, mensaje) {
             if (elemento) {
                 elemento.textContent = mensaje;
-                elemento.style.display = 'block';
+                elemento.style.display = 'inline-block';
             }
         }
 
@@ -296,9 +306,9 @@
             }
         }
 
-        verificarCampoEnTiempoReal('relevancia', /^[1-5]{1}/, 'mensajeRelevancia', 'La pregunta debe comenzar con una letra mayúscula.');
-        verificarCampoEnTiempoReal('usuario', /^.{1,50}/, 'mensajeUsuario', 'La pregunta debe comenzar con una letra mayúscula.');
-        verificarCampoEnTiempoReal('comentario', /^.{,250}/, 'mensajeComentarioNuevo', 'La respuesta debe comenzar con una letra mayúscula.');
+        verificarCampoEnTiempoReal('relevancia_i', /^[1-5]{1}/, 'mensajeRelevancia', 'La pregunta debe comenzar con una letra mayúscula.');
+        verificarCampoEnTiempoReal('usuario_i', /^.{1,50}/, 'mensajeUsuario', 'La pregunta debe comenzar con una letra mayúscula.');
+        verificarCampoEnTiempoReal('comentario_i', /^.{1,250}/, 'mensajeComentarioNuevo', 'La respuesta debe comenzar con una letra mayúscula.');
         // Obtener el ID de la URL
         var idPregunta = obtenerIdDeURL().toString();
         ComentariosPorId(idPregunta);
