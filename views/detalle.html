@@ -75,17 +75,17 @@
                                     <div class="contenedorFormulario text-center" style="display: inline-flex;">
                                         <label for="relevancia_i" class="h4" style="padding-left: 10px; padding-right: 10px;">Relevancia (1-5 estrellas): </label>
                                         <input name="RelevanciaNuevo" type="number" id="relevancia_i" min="1" max="5" required>
-                                        <div id="mensajeRelevancia" class="invalid-feedback">El campo de relevancia tiene que valer entre 1 y 5.</div>
+                                        <div id="mensajeRelevancia" class="invalid-tooltip">El campo de relevancia tiene que valer entre 1 y 5.</div>
                                     </div>
-                                    <div class="contenedorFormulario text-center" style="display: inline-flex;">
+                                    <div class="contenedorFormulario text-center position-relative" style="display: inline-flex;">
                                         <label for="usuario_i" class="h4" style="padding-left: 10px; padding-right: 10px;">Usuario: </label>
                                         <input name="UsuarioNuevo" type="text" id="usuario_i" required>
-                                        <div id="mensajeUsuario" class="invalid-feedback">El campo de usuario no puede estar vacío.</div>
+                                        <div id="mensajeUsuario" class="invalid-tooltip">El campo de usuario no puede estar vacío.</div>
                                     </div>
-                                    <div class="contenedorFormulario text-center" style="display: inline-flex;">
+                                    <div class="contenedorFormulario text-center position-relative" style="display: inline-flex;">
                                         <label for="comentario_i" class="h4" style="padding-left: 10px; padding-right: 10px;">Comentario: </label>
                                         <input name="ComentarioNuevo" type="text" id="comentario_i" required>
-                                        <div id="mensajeComentarioNUevo" class="invalid-feedback">El campo de comentario no puede estar vacío.</div>
+                                        <div id="mensajeComentarioNUevo" class="invalid-tooltip">El campo de comentario no puede estar vacío.</div>
                                     </div>
                         
                                     <input type="button" value="Agregar Comentario" onclick="agregarNuevoComentario()">
