@@ -46,6 +46,12 @@ const preguntasService = {
     }
   },
 
+  borrarComentario: (id, comentario_a_eliminar) => {
+    let id_comentario = parseInt(id);
+    const pregunta = preguntas.get(id_comentario);
+    pregunta.comentarios.pop(comentario_a_eliminar);
+  },
+
   actualizarPregunta: (old_pregunta, id, imagen_pregunta_url, imagen_respuesta_url, pregunta, respuesta, dificultad, tema, nuevoComentario) => {
     const preguntaToUpdate = preguntas.get(id);
     // Verifica si la pregunta existe

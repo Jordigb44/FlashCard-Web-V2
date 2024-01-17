@@ -123,7 +123,7 @@
         }
 
         // Función para crear un comentario con botones + y -
-        function crearComentario(comentario) {
+        function crearComentario(id, comentario) {
             var div = document.createElement('div');
             div.className = 'd-flex flex-row justify-content-center align-items-center align-content-center text-center mb-2';
 
@@ -142,7 +142,8 @@
             imgMenos.style.cursor = 'pointer'; // Para que se muestre el cursor como puntero al pasar por encima
             imgMenos.addEventListener('click', function() {
                 // Imprimir el comentario referenciado al hacer clic en la imagen
-                console.log('Comentario referenciado:', comentario);
+                DelComentarioPorId(id, comentario);
+                div.remove();
             });
             div.appendChild(imgMenos);
 
@@ -160,12 +161,27 @@
                     dataType: 'json',
                     success: function(data) {
                         data.comentarios.forEach(function(comentario) {
-                            var comentarioElemento = crearComentario(comentario);
+                            var comentarioElemento = crearComentario(idPregunta, comentario);
                             comentariosContainer.appendChild(comentarioElemento);
                         });
                     },
                     error: function(error) {
-                        console.log(error);
+                        res.status(404).redirect(`/error/obetenerComentarios/Error al obtener los comentarios`)
+                    }
+                });
+            }
+
+            function DelComentarioPorId(id, comentario) {
+                $.ajax({
+                    url: '/delComentariosPorId',
+                    type: 'GET',
+                    data: { id: id, comentario_a_eliminar: comentario },
+                    dataType: 'json',
+                    success: function(data) {
+                        pass;
+                    },
+                    error: function(error) {
+                        res.status(404).redirect(`/error/eliminarComentraio/Error al eliminar el comentario`)
                     }
                 });
             }
@@ -187,7 +203,6 @@
         var idPregunta = obtenerIdDeURL().toString();
         ComentariosPorId(idPregunta);
     </script>
-
 
     {{/preguntas}}
 </body>

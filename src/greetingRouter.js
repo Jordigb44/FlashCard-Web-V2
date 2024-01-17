@@ -68,6 +68,21 @@ router.get('/getComentariosPorId', (req, res) => {
   }
 });
 
+router.get('/delComentariosPorId', (req, res) => {
+  try {
+    const id = req.query.id;
+    const comentario_a_eliminar = req.query.comentario_a_eliminar;
+    preguntasService.borrarComentario(id, comentario_a_eliminar);
+    // Filtra las preguntas por el tema proporcionado
+    const preguntasFiltradas = Array.from(preguntasService.getPreguntas().values())
+    .filter(pregunta => pregunta.id == id);
+    // Devuelve las preguntas filtradas como JSON
+    res.json({ comentarios: preguntasFiltradas[0].comentarios });
+  } catch (error) {
+    res.status(404).redirect(`/error/obetenerPregunta/Error al obtener los comentarios`)
+  }
+});
+
 router.get('/detalle/:id', (req, res) => {
   const id = parseInt(req.params.id);
   const pregunta = preguntasService.getPreguntaById(id);
