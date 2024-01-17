@@ -33,12 +33,8 @@ header nav img {
 
 input {
   border-radius: 10px;
-  /* Redondear los bordes de los campos de entrada */
   padding: 5px;
-  /* Agregar relleno interno para separar el texto del borde */
   margin: 5px;
-  /* Agregar margen para separar los campos entre sí */
-  
 }
  textarea{
   resize: none;
